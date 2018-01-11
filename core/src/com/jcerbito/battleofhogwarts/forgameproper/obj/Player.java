@@ -1,6 +1,9 @@
 package com.jcerbito.battleofhogwarts.forgameproper.obj;
 
 import com.badlogic.gdx.graphics.g2d.Sprite;
+import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+import com.jcerbito.battleofhogwarts.Resources;
+import com.jcerbito.battleofhogwarts.forbg.SizeEval;
 
 /**
  * Created by HP on 10/01/2018.
@@ -13,9 +16,10 @@ public class Player extends Sprite {
 
 
 
-    public Player(int lX, int lY){
+    public Player(int lX, int lY, Resources res){
         locX = lX;
         locY = lY;
+        set(res.hp);
     }
 
     public int getLocX(){
@@ -32,6 +36,11 @@ public class Player extends Sprite {
 
     public void setLocY(int lY){
         locY = lY;
+    }
+
+    public void draw(SpriteBatch batch, SizeEval sizeEval){
+        setPosition(sizeEval.getBaseX(locX), sizeEval.getBaseY(locY));
+        super.draw(batch);
     }
 
 }

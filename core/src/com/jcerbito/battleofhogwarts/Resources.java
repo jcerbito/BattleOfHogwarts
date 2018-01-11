@@ -14,8 +14,11 @@ public class Resources {
 
     public TextureRegion tile1;
     public TextureRegion tile2;
+    public TextureRegion lb;
     public TextureRegion tile3;
     public Sprite hp;
+    public Sprite voldemort;
+
 
 
     public static final int TILE_SIZE = 25;
@@ -26,6 +29,8 @@ public class Resources {
         tile2 = gameSprite.findRegion("tile2");
         tile3 = gameSprite.findRegion("tile3");
         hp = new Sprite(gameSprite.findRegion("hp"));
+        voldemort = new Sprite(gameSprite.findRegion("voldemort"));
+        lb = gameSprite.findRegion("lb");
     }
 
     public void dispose(){

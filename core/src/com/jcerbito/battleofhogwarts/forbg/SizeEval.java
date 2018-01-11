@@ -1,5 +1,6 @@
 package com.jcerbito.battleofhogwarts.forbg;
 
+import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.jcerbito.battleofhogwarts.Resources;
 
@@ -27,6 +28,14 @@ public class SizeEval {
 
     public float getBaseY(int baseY){
         return StageMeasure.getHeight() / 2 - ((resources.TILE_SIZE) * 4 / 5) * ((maxTileBaseY + 3) / 2 - baseY);
+    }
+
+    public float getPosEnemyX(Sprite enemy){
+         return  (StageMeasure.getWidth() / 2) - enemy.getWidth() / 2;
+    }
+
+    public float getPosEnemyY(Sprite enemy){
+        return StageMeasure.getHeight() - 40 - enemy.getHeight() / 2; //(StageMeasure.getHeight() / 2 - enemy.getHeight() / 2);
     }
 
 

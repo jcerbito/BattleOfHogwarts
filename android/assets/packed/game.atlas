@@ -1,34 +1,48 @@
 
 game.png
-size: 128,32
+size: 256,64
 format: RGBA8888
 filter: Nearest,Nearest
 repeat: none
 hp
   rotate: false
-  xy: 2, 2
+  xy: 54, 27
+  size: 25, 25
+  orig: 25, 25
+  offset: 0, 0
+  index: -1
+lb
+  rotate: false
+  xy: 81, 27
   size: 25, 25
   orig: 25, 25
   offset: 0, 0
   index: -1
 tile1
   rotate: false
-  xy: 29, 2
+  xy: 108, 27
   size: 25, 25
   orig: 25, 25
   offset: 0, 0
   index: -1
 tile2
   rotate: false
-  xy: 56, 2
+  xy: 135, 27
   size: 25, 25
   orig: 25, 25
   offset: 0, 0
   index: -1
 tile3
   rotate: false
-  xy: 83, 2
+  xy: 162, 27
   size: 25, 25
   orig: 25, 25
+  offset: 0, 0
+  index: -1
+voldemort
+  rotate: false
+  xy: 2, 2
+  size: 50, 50
+  orig: 50, 50
   offset: 0, 0
   index: -1

@@ -12,6 +12,7 @@ import com.jcerbito.battleofhogwarts.BattleOfHogwarts;
 import com.jcerbito.battleofhogwarts.Resources;
 import com.jcerbito.battleofhogwarts.forbg.Background;
 import com.jcerbito.battleofhogwarts.forbg.SizeEval;
+import com.jcerbito.battleofhogwarts.forbg.foreffects.LightningBoltFx;
 import com.jcerbito.battleofhogwarts.forgameproper.GameProper;
 import com.jcerbito.battleofhogwarts.forgameproper.obj.Player;
 
@@ -48,17 +49,19 @@ public class GameScreen extends DefaultScreen implements InputProcessor{
         bg = new Background();
         sizeEval = new SizeEval(gameStage, game.res, GameProper.MAX_BASEX, GameProper.MAX_BASEY);
 
-        gmProper = new GameProper();
+        gmProper = new GameProper(game);
         player = gmProper.getPlayer();
 
-        player.set(game.res.hp);
-        RetryMove();
+//        player.set(game.res.hp);
+//        RetryMove();
 
         Gdx.input.setInputProcessor(this);
+        LightningBoltFx.Create(0, 0, gmProper.getEffectTool(), sizeEval  ,game.res);
     }
 
     public void update(float delta){
         gameStage.act(delta);
+        gmProper.update(delta);
     }
 
     public void drawBase(){
@@ -91,9 +94,11 @@ public class GameScreen extends DefaultScreen implements InputProcessor{
 
         bg.draw(gameStage, game.res);
         drawBase();
+        gmProper.getEffectTool().draw(batch);
 
         batch.begin();
-        player.draw(batch);
+        player.draw(batch, sizeEval);
+        gmProper.getEnemy().draw(batch, sizeEval);
         batch.end();
 
         gameStage.draw();
@@ -107,7 +112,7 @@ public class GameScreen extends DefaultScreen implements InputProcessor{
     public void resize(int width, int height) {
         super.resize(width, height);
         gameStage.getViewport().update(width, height, true);
-        RetryMove();
+//        RetryMove();
     }
 
     @Override
@@ -133,15 +138,15 @@ public class GameScreen extends DefaultScreen implements InputProcessor{
     }
 
     //para kapag niresize yung window mag aadjust yung coordinate location ng player
-    public void RetryMove(){
-        player.setPosition(sizeEval.getBaseX(player.getLocX()), sizeEval.getBaseY(player.getLocY()));
-    }
+//    public void RetryMove(){
+//        player.setPosition(sizeEval.getBaseX(player.getLocX()), sizeEval.getBaseY(player.getLocY()));
+//    }
 
     // pag nag attempt gumalaw yung player
     public void TryMove(int tX, int tY){
         if (gmProper.ForMove(player.getLocX() + tX, player.getLocY() + tY )){
             gmProper.PlayerPos(player.getLocX() + tX, player.getLocY() + tY );
-            RetryMove();
+//            RetryMove();
 
         }
     }
