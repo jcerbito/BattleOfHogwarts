@@ -6,20 +6,24 @@ import com.badlogic.gdx.math.MathUtils;
 import com.jcerbito.battleofhogwarts.Resources;
 import com.jcerbito.battleofhogwarts.forbg.SizeEval;
 import com.jcerbito.battleofhogwarts.forgameproper.GameProper;
+import com.jcerbito.battleofhogwarts.forgameproper.GameProperAverage;
+import com.jcerbito.battleofhogwarts.forgameproper.GameProperDiff;
 import com.jcerbito.battleofhogwarts.forgameproper.GameUpgrade;
+import com.jcerbito.battleofhogwarts.forgameproper.GameUpgradeAverage;
+import com.jcerbito.battleofhogwarts.forgameproper.GameUpgradeDiff;
 
 /**
  * Created by HP on 11/01/2018.
  */
 
-public class Enemy extends ObjectEffect {
+public class EnemyDiff extends ObjectEffect {
 
-    private  static final float ATTACK_TIME = 1.0f;
+    private  static final float ATTACK_TIME = 0.3f; //1.0f before
     //private static final int O_ENEMY_LIVES = 10;
 
     private float timeStartAttack;
     private float timeNextAttack;
-   // private int lives;
+    // private int lives;
 
     private boolean targetTiles[][];
 
@@ -34,15 +38,15 @@ public class Enemy extends ObjectEffect {
         }
     }*/
 
-    public interface EnemyAttackedListener{
+    public interface EnemyDiffAttackedListener{
         void OnAttack(boolean[][] tiles);
     }
 
-    private EnemyAttackedListener attackedListener;
+    private EnemyDiffAttackedListener attackedListener;
 
 
-    public Enemy(Resources res, EnemyAttackedListener listener, int _type){
-        super(GameUpgrade.getEnemyLives());
+    public EnemyDiff(Resources res, EnemyDiffAttackedListener listener, int _type){
+        super(GameUpgradeDiff.getEnemyLives());
         type = _type;
         set(res.deathEater.get(type));
         resetTimeAttack();
@@ -51,10 +55,10 @@ public class Enemy extends ObjectEffect {
 
         //lives = O_ENEMY_LIVES;
 
-        targetTiles = new boolean[GameProper.MAX_BASEX + 1][];
+        targetTiles = new boolean[GameProperDiff.MAX_BASEX + 1][];
 
-        for (int i = 0; i <= GameProper.MAX_BASEX; i++){
-            targetTiles[i] = new boolean[GameProper.MAX_BASEY + 1];
+        for (int i = 0; i <= GameProperDiff.MAX_BASEX; i++){
+            targetTiles[i] = new boolean[GameProperDiff.MAX_BASEY + 1];
         }
     }
 
@@ -78,7 +82,7 @@ public class Enemy extends ObjectEffect {
             //deathEater3Attack();
             switch (type){
                 case Resources.DE_1:
-                    firstAttack();
+                    secondAttack();
                     break;
                 case Resources.DE_2:
                     thirdAttack();
@@ -97,41 +101,41 @@ public class Enemy extends ObjectEffect {
     }
     //vertical
     private void firstAttack(){
-        int colA = MathUtils.random(GameProper.MAX_BASEX);
+        int colA = MathUtils.random(GameProperDiff.MAX_BASEX);
         int colB = 0;
         do{
-            colB = MathUtils.random(GameProper.MAX_BASEX);
+            colB = MathUtils.random(GameProperDiff.MAX_BASEX);
         }while (colA == colB);
 
-        for (int x = 0; x <= GameProper.MAX_BASEX; x++){
-            for (int y = 0 ; y <= GameProper.MAX_BASEY; y++){
+        for (int x = 0; x <= GameProperDiff.MAX_BASEX; x++){
+            for (int y = 0 ; y <= GameProperDiff.MAX_BASEY; y++){
                 targetTiles[x][y] = (x == colA || x == colB);
             }
         }
     }
     //horizontal
     private void secondAttack(){
-        int rowA = MathUtils.random(GameProper.MAX_BASEY);
+        int rowA = MathUtils.random(GameProperDiff.MAX_BASEY);
         int rowB = 0;
         do{
-            rowB = MathUtils.random(GameProper.MAX_BASEY);
+            rowB = MathUtils.random(GameProperDiff.MAX_BASEY);
         }while (rowA == rowB);
 
-        for (int x = 0; x <= GameProper.MAX_BASEX; x++){
-            for (int y = 0 ; y <= GameProper.MAX_BASEY; y++){
+        for (int x = 0; x <= GameProperDiff.MAX_BASEX; x++){
+            for (int y = 0 ; y <= GameProperDiff.MAX_BASEY; y++){
                 targetTiles[x][y] = (y == rowA || y == rowB); //pag yung y equals dun sa rowA or rowB ready for attack na siya
             }
         }
     }
     //diagonal
     private void thirdAttackFill(int mstart, int dm){
-        for(int d = 0; d <= GameProper.MAX_BASEY; d++){
+        for(int d = 0; d <= GameProperDiff.MAX_BASEY; d++){
             int nm = mstart + d * dm;
-            if (nm > GameProper.MAX_BASEX){
-                nm = nm - GameProper.MAX_BASEX - 1;
+            if (nm > GameProperDiff.MAX_BASEX){
+                nm = nm - GameProperDiff.MAX_BASEX - 1;
             }
             if (nm < 0) {
-                nm = nm + GameProper.MAX_BASEX + 1;
+                nm = nm + GameProperDiff.MAX_BASEX + 1;
             }
 
             targetTiles[nm][d] = true;
@@ -142,14 +146,14 @@ public class Enemy extends ObjectEffect {
         int dm1 = -1 + MathUtils.random(1) * 2;
         int dm2 = -1 + MathUtils.random(1) * 2;
 
-        int colA = MathUtils.random(GameProper.MAX_BASEX);
+        int colA = MathUtils.random(GameProperDiff.MAX_BASEX);
         int colB = 0;
         do{
-            colB = MathUtils.random(GameProper.MAX_BASEX);
+            colB = MathUtils.random(GameProperDiff.MAX_BASEX);
         }while (colA == colB);
 
-        for (int x = 0; x <= GameProper.MAX_BASEX; x++){
-            for (int y = 0 ; y <= GameProper.MAX_BASEY; y++){
+        for (int x = 0; x <= GameProperDiff.MAX_BASEX; x++){
+            for (int y = 0 ; y <= GameProperDiff.MAX_BASEY; y++){
                 targetTiles[x][y] = false;
             }
         }
@@ -159,15 +163,15 @@ public class Enemy extends ObjectEffect {
     }
     //random
     private void fourthAttack(){
-        for (int x = 0; x <= GameProper.MAX_BASEX; x++){
-            for (int y = 0 ; y <= GameProper.MAX_BASEY; y++){
+        for (int x = 0; x <= GameProperDiff.MAX_BASEX; x++){
+            for (int y = 0 ; y <= GameProperDiff.MAX_BASEY; y++){
                 targetTiles[x][y] = false;
             }
         }
 
         for (int j = 0; j < 10; j++){
-            int vx = MathUtils.random(GameProper.MAX_BASEX);
-            int vy = MathUtils.random(GameProper.MAX_BASEY);
+            int vx = MathUtils.random(GameProperDiff.MAX_BASEX);
+            int vy = MathUtils.random(GameProperDiff.MAX_BASEY);
 
             targetTiles[vx][vy] = true;
         }
@@ -189,6 +193,7 @@ public class Enemy extends ObjectEffect {
             default:
                 fourthAttack();
                 break;
+
         }
     }
 

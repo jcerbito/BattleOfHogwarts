@@ -9,8 +9,11 @@ import com.jcerbito.battleofhogwarts.forbg.foreffects.Effect;
 import com.jcerbito.battleofhogwarts.forbg.foreffects.EffectTool;
 import com.jcerbito.battleofhogwarts.forbg.foreffects.LightningBoltFx;
 import com.jcerbito.battleofhogwarts.forgameproper.obj.Enemy;
+import com.jcerbito.battleofhogwarts.forgameproper.obj.EnemyAverage;
+import com.jcerbito.battleofhogwarts.forgameproper.obj.EnemyDiff;
 import com.jcerbito.battleofhogwarts.forgameproper.obj.Equipment;
 import com.jcerbito.battleofhogwarts.forgameproper.obj.Player;
+import com.jcerbito.battleofhogwarts.forgameproper.obj.PlayerAverage;
 
 import java.util.ArrayList;
 
@@ -18,12 +21,12 @@ import java.util.ArrayList;
  * Created by HP on 10/01/2018.
  */
 
-public class GameProper implements Enemy.EnemyAttackedListener, LightningBoltFx.LightningBoltFxListener{
+public class GameProperDiff implements EnemyDiff.EnemyDiffAttackedListener, LightningBoltFx.LightningBoltFxListener{
 
     public static final int MAX_BASEX = 11;
     public static final int MAX_BASEY = 5;
-   // private static final int O_PLAYER_LIVES = 3;
-    private static final float EQ_TIME_INTERVAL = 2.0f;
+    // private static final int O_PLAYER_LIVES = 3;
+    private static final float EQ_TIME_INTERVAL = 4.0f;
     private static final int MAX_EQ = 3;
     BattleOfHogwarts game;
 
@@ -32,7 +35,7 @@ public class GameProper implements Enemy.EnemyAttackedListener, LightningBoltFx.
     }
 
     Player player;
-    Enemy enemy;
+    EnemyDiff enemy;
     EffectTool effectTool;
 
     ArrayList<Equipment> equipments;
@@ -42,10 +45,10 @@ public class GameProper implements Enemy.EnemyAttackedListener, LightningBoltFx.
     GameEventListener eventListener;
 
 
-    public GameProper(BattleOfHogwarts g, GameEventListener listener) {
+    public GameProperDiff(BattleOfHogwarts g, GameEventListener listener) {
         game = g;
-        player = new Player(MathUtils.random(MAX_BASEX), MathUtils.random(MAX_BASEY), game.res, GameUpgrade.pLives);
-        enemy = new Enemy(game.res, this, MathUtils.random(Resources.VOLDEMORT)); //ipapasa yung gameproper as attacklistner
+        player = new Player(MathUtils.random(MAX_BASEX), MathUtils.random(MAX_BASEY), game.res, GameUpgradeDiff.pLives);
+        enemy = new EnemyDiff(game.res, this, MathUtils.random(Resources.VOLDEMORT)); //ipapasa yung gameproper as attacklistner
         effectTool = new EffectTool();
         equipments = new ArrayList<Equipment>();
         gTime = 0;
@@ -57,7 +60,7 @@ public class GameProper implements Enemy.EnemyAttackedListener, LightningBoltFx.
         return player;
     }
 
-    public Enemy getEnemy(){
+    public EnemyDiff getEnemy(){
         return enemy;
     }
 
@@ -112,10 +115,10 @@ public class GameProper implements Enemy.EnemyAttackedListener, LightningBoltFx.
                 if (currEquipment.getEq() == Equipment.HEART){
                     player.addLives(1);
                 }else if (currEquipment.getEq() == Equipment.WAND){
-                    enemy.damage(GameUpgrade.pDamage);
+                    enemy.damage(GameUpgradeDiff.pDamage);
                     if (enemy.getLives() <= 0){
-                        GameUpgrade.currentLvl += 1;
-                        GameUpgrade.pLives = player.getLives();
+                        GameUpgradeDiff.currentLvl += 1;
+                        GameUpgradeDiff.pLives = player.getLives();
                         eventListener.OnGameEnd(true);
                     }
 
@@ -140,7 +143,7 @@ public class GameProper implements Enemy.EnemyAttackedListener, LightningBoltFx.
         for (int x = 0; x < tiles.length; x++){
             for (int y = 0; y < tiles[x].length; y++){
                 if (tiles[x][y]){
-                LightningBoltFx.Create (x, y, effectTool, game.res, this);
+                    LightningBoltFx.Create (x, y, effectTool, game.res, this);
                 }
             }
         }
@@ -151,7 +154,7 @@ public class GameProper implements Enemy.EnemyAttackedListener, LightningBoltFx.
         if(effect.getLocX() == player.getLocX() && effect.getLocY() == player.getLocY()){
             player.damage(1);
             if(player.getLives() <= 0 ){
-            GameUpgrade.Reset();
+                GameUpgradeDiff.Reset();
             }
         }
     }

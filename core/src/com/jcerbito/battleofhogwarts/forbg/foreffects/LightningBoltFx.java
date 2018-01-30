@@ -12,16 +12,20 @@ import com.jcerbito.battleofhogwarts.forbg.SizeEval;
 public class LightningBoltFx extends Effect {
 
 
-    private static final float TIMES_UP = 2.0f ;
+    private static final float TIMES_UP = 0.75f ;
     private int locX;
     private int locY;
-    private SizeEval sizeEval;
     private Resources resources;
 
+    public interface LightningBoltFxListener{
+      public void OnEffect(LightningBoltFx effect);
+    };
 
-    public static LightningBoltFx Create(int lX, int lY, EffectTool tool, SizeEval szEvl, Resources res){
+    private LightningBoltFxListener listener;
+
+    public static LightningBoltFx Create(int lX, int lY, EffectTool tool, Resources res, LightningBoltFxListener lstnr){
         LightningBoltFx effect = lightningBoltFxPool.obtain();
-        effect.init(lX,lY,tool,szEvl,res);
+        effect.init(lX,lY,tool,res, lstnr);
         return effect;
     }
 
@@ -29,16 +33,23 @@ public class LightningBoltFx extends Effect {
 
     }
 
-    public void init(int lX, int lY, EffectTool parent, SizeEval szEvl, Resources res){
+    public void init(int lX, int lY, EffectTool parent, Resources res, LightningBoltFxListener lstnr){
+        listener = lstnr;
         locX = lX;
         locY = lY;
-        sizeEval = szEvl;
         resources = res;
         super.init(parent);
     }
 
+//    public void init(int lX, int lY, EffectTool parent, Resources res){
+//        locX = lX;
+//        locY = lY;
+//        resources = res;
+//        super.init(parent);
+//    }
+
     @Override
-    public void draw(SpriteBatch batch) {
+    public void draw(SpriteBatch batch, SizeEval sizeEval) {
         batch.begin();
         batch.draw(resources.lb, sizeEval.getBaseX(locX), sizeEval.getBaseY(locY));
         batch.end();
@@ -47,11 +58,22 @@ public class LightningBoltFx extends Effect {
     @Override
     public void update(float delta) {
         super.update(delta);
-        if (timeAvailable > TIMES_UP){
+        if (timeAvailable > TIMES_UP && isAvailable){
             isAvailable = false;
+            if (listener != null){
+                listener.OnEffect(this);
+            }
         }
     }
 
+    //dito yung part na kapag yung locY and locX nagmatch sa effect position mababawasan ng life yung player
+    public int getLocX() {
+        return locX;
+    }
+
+    public int getLocY() {
+        return locY;
+    }
 
     @Override
     public void release() {

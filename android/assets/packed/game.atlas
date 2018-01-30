@@ -1,48 +1,90 @@
 
 game.png
-size: 256,64
+size: 512,64
 format: RGBA8888
 filter: Nearest,Nearest
 repeat: none
+de1
+  rotate: false
+  xy: 2, 2
+  size: 50, 50
+  orig: 50, 50
+  offset: 0, 0
+  index: -1
+de2
+  rotate: false
+  xy: 54, 2
+  size: 50, 50
+  orig: 50, 50
+  offset: 0, 0
+  index: -1
+de3
+  rotate: false
+  xy: 106, 2
+  size: 50, 50
+  orig: 50, 50
+  offset: 0, 0
+  index: -1
+heart
+  rotate: false
+  xy: 210, 27
+  size: 25, 25
+  orig: 25, 25
+  offset: 0, 0
+  index: -1
 hp
   rotate: false
-  xy: 54, 27
+  xy: 237, 27
   size: 25, 25
   orig: 25, 25
   offset: 0, 0
   index: -1
 lb
   rotate: false
-  xy: 81, 27
+  xy: 264, 27
   size: 25, 25
   orig: 25, 25
   offset: 0, 0
   index: -1
 tile1
   rotate: false
-  xy: 108, 27
+  xy: 291, 27
   size: 25, 25
   orig: 25, 25
   offset: 0, 0
   index: -1
 tile2
   rotate: false
-  xy: 135, 27
+  xy: 318, 27
   size: 25, 25
   orig: 25, 25
   offset: 0, 0
   index: -1
 tile3
   rotate: false
-  xy: 162, 27
+  xy: 345, 27
   size: 25, 25
   orig: 25, 25
   offset: 0, 0
   index: -1
 voldemort
   rotate: false
-  xy: 2, 2
+  xy: 158, 2
   size: 50, 50
   orig: 50, 50
+  offset: 0, 0
+  index: -1
+wand
+  rotate: false
+  xy: 372, 27
+  size: 25, 25
+  orig: 25, 25
+  offset: 0, 0
+  index: -1
+wandy
+  rotate: false
+  xy: 399, 27
+  size: 25, 25
+  orig: 25, 25
   offset: 0, 0
   index: -1

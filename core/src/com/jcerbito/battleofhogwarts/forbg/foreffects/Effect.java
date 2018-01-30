@@ -2,6 +2,7 @@ package com.jcerbito.battleofhogwarts.forbg.foreffects;
 
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.utils.Pool;
+import com.jcerbito.battleofhogwarts.forbg.SizeEval;
 
 /**
  * Created by HP on 11/01/2018.
@@ -34,7 +35,7 @@ public abstract class Effect implements Pool.Poolable{
         timeAvailable += delta;
     }
     
-    public abstract void draw(SpriteBatch batch);
+    public abstract void draw(SpriteBatch batch, SizeEval sizeEval);
     
     public boolean isAvailable(){
         return isAvailable;

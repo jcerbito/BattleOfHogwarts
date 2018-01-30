@@ -5,12 +5,13 @@ import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.jcerbito.battleofhogwarts.Resources;
 import com.jcerbito.battleofhogwarts.forbg.SizeEval;
 import com.jcerbito.battleofhogwarts.forgameproper.GameUpgrade;
+import com.jcerbito.battleofhogwarts.forgameproper.GameUpgradeDiff;
 
 /**
  * Created by HP on 10/01/2018.
  */
 
-public class Player extends ObjectEffect {
+public class PlayerDiff extends ObjectEffect {
 
     private int locX;
     private int locY;
@@ -19,13 +20,13 @@ public class Player extends ObjectEffect {
     private final int maxLives;
 
 
-    public Player(int lX, int lY, Resources res, int lvs){
+    public PlayerDiff(int lX, int lY, Resources res, int lvs){
         super(lvs);
         locX = lX;
         locY = lY;
         set(res.hp);
         //lives = lvs;
-        maxLives = GameUpgrade.maxPLives;
+        maxLives = GameUpgradeDiff.maxPLives;
     }
 
     public int getLocX(){

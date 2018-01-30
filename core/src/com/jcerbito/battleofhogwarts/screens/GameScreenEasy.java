@@ -19,8 +19,10 @@ import com.jcerbito.battleofhogwarts.forbg.Background;
 import com.jcerbito.battleofhogwarts.forbg.SizeEval;
 import com.jcerbito.battleofhogwarts.forbg.foreffects.LightningBoltFx;
 import com.jcerbito.battleofhogwarts.forgameproper.GameProper;
+import com.jcerbito.battleofhogwarts.forgameproper.GameProperEasy;
 import com.jcerbito.battleofhogwarts.forgameproper.obj.Equipment;
 import com.jcerbito.battleofhogwarts.forgameproper.obj.Player;
+import com.jcerbito.battleofhogwarts.forgameproper.obj.PlayerEasy;
 
 import javax.annotation.Resource;
 
@@ -28,7 +30,7 @@ import javax.annotation.Resource;
  * Created by HP on 09/01/2018.
  */
 
-public class GameScreen extends DefaultScreen implements InputProcessor, GameProper.GameEventListener{
+public class GameScreenEasy extends DefaultScreen implements InputProcessor, GameProperEasy.GameEventListener{
 
     SpriteBatch batch;
 
@@ -43,7 +45,7 @@ public class GameScreen extends DefaultScreen implements InputProcessor, GamePro
     private Stage gameStage;
     private Background bg;
 
-    private GameProper gmProper;
+    private GameProperEasy gmProper;
     private Player player;
 
     private static final float SHAKE_TIME = 0.3f;
@@ -52,16 +54,16 @@ public class GameScreen extends DefaultScreen implements InputProcessor, GamePro
 
 
 
-    public GameScreen(BattleOfHogwarts g) {
+    public GameScreenEasy(BattleOfHogwarts g) {
         super(g);
         batch = new SpriteBatch();
 
         ExtendViewport viewport = new ExtendViewport(WIDTH, HEIGHT);
         gameStage = new Stage(viewport, batch);
         bg = new Background();
-        sizeEval = new SizeEval(gameStage, game.res, GameProper.MAX_BASEX, GameProper.MAX_BASEY);
+        sizeEval = new SizeEval(gameStage, game.res, GameProperEasy.MAX_BASEX, GameProperEasy.MAX_BASEY);
 
-        gmProper = new GameProper(game, this);
+        gmProper = new GameProperEasy(game, this);
         player = gmProper.getPlayer();
 
 //        player.set(game.res.hp);
@@ -91,20 +93,20 @@ public class GameScreen extends DefaultScreen implements InputProcessor, GamePro
     public void update(float delta){
         gameStage.act(delta);
         if (player.getLives() > 0 && gmProper.getEnemy().getLives() > 0){
-        gmProper.update(delta);
+            gmProper.update(delta);
         }
     }
 
     public void drawBase(){
         batch.begin();
 
-        for( int x = 0; x <= GameProper.MAX_BASEX; x++){
-            for ( int y = 0; y <= GameProper.MAX_BASEY; y++){
+        for( int x = 0; x <= GameProperEasy.MAX_BASEX; x++){
+            for ( int y = 0; y <= GameProperEasy.MAX_BASEY; y++){
                 batch.draw(game.res.tile3, sizeEval.getBaseX(x), sizeEval.getBaseY(y) );
             }
         }
 
-  //      batch.draw(game.res.hp, sizeEval.getBaseX(1), sizeEval.getBaseY(1));
+        //      batch.draw(game.res.hp, sizeEval.getBaseX(1), sizeEval.getBaseY(1));
 
         batch.end();
     }
@@ -128,7 +130,7 @@ public class GameScreen extends DefaultScreen implements InputProcessor, GamePro
             game.res.gamefont.draw(batch, "OH NO! YOU LOSE!", 0, gameStage.getViewport().getScreenY() + gameStage.getHeight() / 2, gameStage.getWidth(), Align.center, false);
             //game.res.gamefont.setColor(Color.WHITE);
         }else if (gmProper.getEnemy().getLives() <= 0){
-           // game.res.gamefont.setColor(Color.BLUE);
+            // game.res.gamefont.setColor(Color.BLUE);
             game.res.gamefont.draw(batch, "YOU WIN!", 0, gameStage.getViewport().getScreenY() + gameStage.getHeight() / 2, gameStage.getWidth(), Align.center, false);
             //game.res.gamefont.setColor(Color.WHITE);
         }
@@ -291,7 +293,7 @@ public class GameScreen extends DefaultScreen implements InputProcessor, GamePro
                             @Override
                             public boolean act(float delta) {
                                 dispose();
-                                game.setScreen(new GameScreen(game));
+                                game.setScreen(new GameScreenEasy(game));
                                 return true;
                             }
                         }

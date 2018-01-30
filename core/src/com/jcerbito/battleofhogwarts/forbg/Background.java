@@ -25,7 +25,7 @@ public class Background {
 
         for (int y = 0; y <= stage.getHeight(); y += Resources.TILE_SIZE) {
             for (int x = 0; x <= stage.getWidth(); x += Resources.TILE_SIZE) {
-                stage.getBatch().draw(res.tile1, x, y + ((stage.getHeight() / 2) + 80), 0, 0, Resources.TILE_SIZE, Resources.TILE_SIZE, 1.50f, 1.50f, 0 ); //+ (Resources.TILE_SIZE + (stage.getHeight() / 2) + 68)
+                stage.getBatch().draw(res.tile1, x, y + ((stage.getHeight() / 2) + 90), 0, 0, Resources.TILE_SIZE, Resources.TILE_SIZE, 1.00f, 1.00f, 0 ); //+ (Resources.TILE_SIZE + (stage.getHeight() / 2) + 68)
             }
         }
 

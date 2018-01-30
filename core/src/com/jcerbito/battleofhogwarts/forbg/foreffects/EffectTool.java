@@ -1,6 +1,7 @@
 package com.jcerbito.battleofhogwarts.forbg.foreffects;
 
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+import com.jcerbito.battleofhogwarts.forbg.SizeEval;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -35,10 +36,10 @@ public class EffectTool {
         }
     }
 
-    public void draw(SpriteBatch batch){
+    public void draw(SpriteBatch batch, SizeEval sizeEval){
         for (int i = 0; i < effects.size(); i++){
 
-            effects.get(i).draw(batch);
+            effects.get(i).draw(batch, sizeEval);
         }
     }
 

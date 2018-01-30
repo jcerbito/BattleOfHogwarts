@@ -1,7 +1,9 @@
 package com.jcerbito.battleofhogwarts;
 
 import com.badlogic.gdx.Game;
+import com.jcerbito.battleofhogwarts.forgameproper.GameUpgrade;
 import com.jcerbito.battleofhogwarts.screens.GameScreen;
+import com.jcerbito.battleofhogwarts.screens.StartScreen;
 
 public class BattleOfHogwarts extends Game {
 
@@ -10,7 +12,9 @@ public class BattleOfHogwarts extends Game {
 	@Override
 	public void create () {
 		res = new Resources();
-		setScreen(new GameScreen(this));
+		GameUpgrade.Load();
+		//setScreen(new GameScreen(this));
+		setScreen(new StartScreen(this));
 	}
 
 	@Override
@@ -20,6 +24,7 @@ public class BattleOfHogwarts extends Game {
 	
 	@Override
 	public void dispose () {
+		GameUpgrade.Save();
 		res.dispose();
 
 	}
