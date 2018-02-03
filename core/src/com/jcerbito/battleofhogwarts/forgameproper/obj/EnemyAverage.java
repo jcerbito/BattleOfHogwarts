@@ -83,10 +83,10 @@ public class EnemyAverage extends ObjectEffect {
                     firstAttack();
                     break;
                 case Resources.DE_2:
-                    secondAttack();
+                    thirdAttack();
                     break;
                 case Resources.DE_3:
-                    thirdAttack();
+                    fourthAttack();
                     break;
 
             }
@@ -157,21 +157,21 @@ public class EnemyAverage extends ObjectEffect {
         thirdAttackFill(colB, dm2);
     }
     //random
-//    private void fourthAttack(){
-//        for (int x = 0; x <= GameProper.MAX_BASEX; x++){
-//            for (int y = 0 ; y <= GameProper.MAX_BASEY; y++){
-//                targetTiles[x][y] = false;
-//            }
-//        }
-//
-//        for (int j = 0; j < 10; j++){
-//            int vx = MathUtils.random(GameProper.MAX_BASEX);
-//            int vy = MathUtils.random(GameProper.MAX_BASEY);
-//
-//            targetTiles[vx][vy] = true;
-//        }
-//
-//    }
+    private void fourthAttack(){
+        for (int x = 0; x <= GameProperAverage.MAX_BASEX; x++){
+            for (int y = 0 ; y <= GameProperAverage.MAX_BASEY; y++){
+                targetTiles[x][y] = false;
+            }
+        }
+
+        for (int j = 0; j < 10; j++){
+            int vx = MathUtils.random(GameProperAverage.MAX_BASEX);
+            int vy = MathUtils.random(GameProperAverage.MAX_BASEY);
+
+            targetTiles[vx][vy] = true;
+        }
+
+    }
 //
 //    private void finalAttack(){
 //        int randAttck = MathUtils.random(3);

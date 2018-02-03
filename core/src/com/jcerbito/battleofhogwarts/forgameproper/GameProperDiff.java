@@ -1,19 +1,13 @@
 package com.jcerbito.battleofhogwarts.forgameproper;
 
-import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.math.MathUtils;
-import com.badlogic.gdx.utils.Array;
 import com.jcerbito.battleofhogwarts.BattleOfHogwarts;
 import com.jcerbito.battleofhogwarts.Resources;
-import com.jcerbito.battleofhogwarts.forbg.foreffects.Effect;
 import com.jcerbito.battleofhogwarts.forbg.foreffects.EffectTool;
 import com.jcerbito.battleofhogwarts.forbg.foreffects.LightningBoltFx;
-import com.jcerbito.battleofhogwarts.forgameproper.obj.Enemy;
-import com.jcerbito.battleofhogwarts.forgameproper.obj.EnemyAverage;
 import com.jcerbito.battleofhogwarts.forgameproper.obj.EnemyDiff;
 import com.jcerbito.battleofhogwarts.forgameproper.obj.Equipment;
 import com.jcerbito.battleofhogwarts.forgameproper.obj.Player;
-import com.jcerbito.battleofhogwarts.forgameproper.obj.PlayerAverage;
 
 import java.util.ArrayList;
 

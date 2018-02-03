@@ -2,6 +2,8 @@ package com.jcerbito.battleofhogwarts;
 
 import com.badlogic.gdx.Game;
 import com.jcerbito.battleofhogwarts.forgameproper.GameUpgrade;
+import com.jcerbito.battleofhogwarts.forgameproper.GameUpgradeAverage;
+import com.jcerbito.battleofhogwarts.forgameproper.GameUpgradeEasy;
 import com.jcerbito.battleofhogwarts.screens.GameScreen;
 import com.jcerbito.battleofhogwarts.screens.StartScreen;
 
@@ -12,8 +14,8 @@ public class BattleOfHogwarts extends Game {
 	@Override
 	public void create () {
 		res = new Resources();
-		GameUpgrade.Load();
-		//setScreen(new GameScreen(this));
+		GameUpgradeEasy.Load();
+		GameUpgradeAverage.Load();
 		setScreen(new StartScreen(this));
 	}
 
@@ -24,8 +26,8 @@ public class BattleOfHogwarts extends Game {
 	
 	@Override
 	public void dispose () {
-		GameUpgrade.Save();
+		GameUpgradeEasy.Save();
+		GameUpgradeAverage.Save();
 		res.dispose();
-
 	}
 }

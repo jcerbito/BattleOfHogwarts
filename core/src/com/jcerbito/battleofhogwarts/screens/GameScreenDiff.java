@@ -1,10 +1,8 @@
 package com.jcerbito.battleofhogwarts.screens;
 
-import com.badlogic.gdx.Game;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input;
 import com.badlogic.gdx.InputProcessor;
-import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.math.MathUtils;
@@ -17,15 +15,10 @@ import com.jcerbito.battleofhogwarts.BattleOfHogwarts;
 import com.jcerbito.battleofhogwarts.Resources;
 import com.jcerbito.battleofhogwarts.forbg.Background;
 import com.jcerbito.battleofhogwarts.forbg.SizeEval;
-import com.jcerbito.battleofhogwarts.forbg.foreffects.LightningBoltFx;
-import com.jcerbito.battleofhogwarts.forgameproper.GameProper;
 import com.jcerbito.battleofhogwarts.forgameproper.GameProperAverage;
 import com.jcerbito.battleofhogwarts.forgameproper.GameProperDiff;
 import com.jcerbito.battleofhogwarts.forgameproper.obj.Equipment;
 import com.jcerbito.battleofhogwarts.forgameproper.obj.Player;
-import com.jcerbito.battleofhogwarts.forgameproper.obj.PlayerAverage;
-
-import javax.annotation.Resource;
 
 /**
  * Created by HP on 09/01/2018.

@@ -1,41 +1,42 @@
 package com.jcerbito.battleofhogwarts.screens;
 
-import com.badlogic.gdx.Game;
+import com.badlogic.gdx.Application;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input;
-import com.badlogic.gdx.InputProcessor;
-import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.math.MathUtils;
 import com.badlogic.gdx.scenes.scene2d.Action;
+import com.badlogic.gdx.scenes.scene2d.Group;
+import com.badlogic.gdx.scenes.scene2d.InputEvent;
+import com.badlogic.gdx.scenes.scene2d.InputListener;
 import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.scenes.scene2d.actions.Actions;
-import com.badlogic.gdx.utils.Align;
+import com.badlogic.gdx.scenes.scene2d.ui.ImageButton;
+import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
+import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
+import com.badlogic.gdx.scenes.scene2d.utils.TextureRegionDrawable;
 import com.badlogic.gdx.utils.viewport.ExtendViewport;
 import com.jcerbito.battleofhogwarts.BattleOfHogwarts;
 import com.jcerbito.battleofhogwarts.Resources;
 import com.jcerbito.battleofhogwarts.forbg.Background;
 import com.jcerbito.battleofhogwarts.forbg.SizeEval;
-import com.jcerbito.battleofhogwarts.forbg.foreffects.LightningBoltFx;
-import com.jcerbito.battleofhogwarts.forgameproper.GameProper;
 import com.jcerbito.battleofhogwarts.forgameproper.GameProperAverage;
+import com.jcerbito.battleofhogwarts.forgameproper.GameUpgradeAverage;
+import com.jcerbito.battleofhogwarts.forgameproper.GameUpgradeEasy;
 import com.jcerbito.battleofhogwarts.forgameproper.obj.Equipment;
 import com.jcerbito.battleofhogwarts.forgameproper.obj.Player;
-import com.jcerbito.battleofhogwarts.forgameproper.obj.PlayerAverage;
-
-import javax.annotation.Resource;
 
 /**
  * Created by HP on 09/01/2018.
  */
 
-public class GameScreenAverage extends DefaultScreen implements InputProcessor, GameProperAverage.GameEventListener{
+public class GameScreenAverage extends DefaultScreen implements GameProperAverage.GameEventListener{
 
     SpriteBatch batch;
 
-    public static final int WIDTH = 14 * Resources.TILE_SIZE; //350
-    public static final int HEIGHT = 10 * Resources.TILE_SIZE; //250
+    public static final int WIDTH = 16 * Resources.TILE_SIZE; //350 14
+    public static final int HEIGHT = 8 * Resources.TILE_SIZE; //250 10
 
     public static final float GAME_END = 0.5f;
     public static final float GAME_START= 0.2f;
@@ -48,10 +49,13 @@ public class GameScreenAverage extends DefaultScreen implements InputProcessor, 
     private GameProperAverage gmProper;
     private Player player;
 
+    public static float timePast = 21.0f;
+    public static int cntTime;
+
     private static final float SHAKE_TIME = 0.3f;
     private static final float SHAKE_DIST = 4.0f;
 
-
+    private Group ctrlGrp;
 
 
     public GameScreenAverage(BattleOfHogwarts g) {
@@ -66,10 +70,7 @@ public class GameScreenAverage extends DefaultScreen implements InputProcessor, 
         gmProper = new GameProperAverage(game, this);
         player = gmProper.getPlayer();
 
-//        player.set(game.res.hp);
-//        RetryMove();
-
-        Gdx.input.setInputProcessor(this);
+        Gdx.input.setInputProcessor(gameStage);
 
         gameStage.addAction(
                 new Action() {
@@ -88,9 +89,112 @@ public class GameScreenAverage extends DefaultScreen implements InputProcessor, 
                 }
         );
 
+        gameStage.addListener(new InputListener() {
+            @Override
+            public boolean keyDown(InputEvent event, int keycode) {
+                switch (keycode){
+                    case Input.Keys.UP:
+                        TryMove(0,1);
+                        break;
+                    case Input.Keys.DOWN:
+                        TryMove(0,-1);
+                        break;
+                    case Input.Keys.LEFT:
+                        TryMove(-1,0);
+                        break;
+                    case Input.Keys.RIGHT:
+                        TryMove(1,0);
+                        break;
+                };
+
+
+                return false;
+            }
+        });
+
+        TextButton.TextButtonStyle buttonStyle = new TextButton.TextButtonStyle();
+        buttonStyle.font = game.res.gamefont;
+
+        TextButton quitBtn = new TextButton("QUIT GAME", buttonStyle);
+        quitBtn.setPosition((gameStage.getWidth() - quitBtn.getWidth()) / 2, 0);
+
+        quitBtn.addListener(new ClickListener(){
+            public void touchUp(InputEvent event, float x, float y, int pointer, int button){
+                dispose();
+                game.setScreen(new StartScreen(game));
+                if (GameUpgradeAverage.currentLvl == 1){
+                    GameUpgradeAverage.currentLvl = 1;
+                    timePast = 21;
+                }else if (GameUpgradeAverage.currentLvl == 2){
+                    GameUpgradeAverage.currentLvl = 2;
+                    timePast = 31;
+                }else if (GameUpgradeAverage.currentLvl == 3){
+                    GameUpgradeAverage.currentLvl = 3;
+                    timePast = 41;
+                }
+            }
+        });
+
+        gameStage.addActor(quitBtn);
+
+        ctrlGrp = new Group();
+        gameStage.addActor(ctrlGrp);
+
+        if (Gdx.app.getType() == Application.ApplicationType.Android)
+        {
+            allDir();
+        }
+
+    }
+
+    private void indiDir(final int tX, final int tY, TextureRegionDrawable icon, float x, float y){
+        ImageButton imgBtn = new ImageButton(icon);
+        imgBtn.setPosition(x,y);
+        imgBtn.addListener(new ClickListener(){
+            public void touchUp(InputEvent event, float x, float y, int pointer, int button){
+                TryMove(tX, tY);
+                super.touchUp(event, x, y, pointer, button);
+            }
+        });
+
+        ctrlGrp.addActor(imgBtn);
+
+    }
+
+    private void allDir() {
+        indiDir(0, 1, game.res.up, 1, gameStage.getHeight() / 2 );
+        indiDir(0, -1, game.res.down, (gameStage.getWidth() / 2) + 170, 0 );
+
+        indiDir(-1, 0, game.res.left, 1, gameStage.getHeight() / 4 );
+        indiDir(1, 0, game.res.right, (gameStage.getWidth() / 2) + 170, gameStage.getHeight() / 4 );
+
     }
 
     public void update(float delta){
+
+        cntTime = (int)timePast;
+
+        if (cntTime != 0){
+            timePast -= delta;
+        }else if(cntTime == 0){
+            if (GameUpgradeAverage.currentLvl == 1){
+                timePast = 21;
+            }else if (GameUpgradeAverage.currentLvl == 2){
+                timePast = 31;
+            }else if (GameUpgradeAverage.currentLvl == 3){
+                timePast = 41;
+            }
+            game.setScreen(new GameOverScreen(game));
+            if (GameUpgradeAverage.currentLvl == 1){
+                GameUpgradeAverage.currentLvl = 1;
+            }else if (GameUpgradeAverage.currentLvl == 2){
+                GameUpgradeAverage.currentLvl = 2;
+            }else if (GameUpgradeAverage.currentLvl == 3){
+                GameUpgradeAverage.currentLvl = 3;
+            }
+        }
+
+
         gameStage.act(delta);
         if (player.getLives() > 0 && gmProper.getEnemy().getLives() > 0){
             gmProper.update(delta);
@@ -102,11 +206,15 @@ public class GameScreenAverage extends DefaultScreen implements InputProcessor, 
 
         for( int x = 0; x <= GameProperAverage.MAX_BASEX; x++){
             for ( int y = 0; y <= GameProperAverage.MAX_BASEY; y++){
-                batch.draw(game.res.tile3, sizeEval.getBaseX(x), sizeEval.getBaseY(y) );
+                if (GameUpgradeAverage.currentLvl == 1){
+                    batch.draw(game.res.tile5, sizeEval.getBaseX(x), sizeEval.getBaseY(y) );
+                }else if (GameUpgradeAverage.currentLvl == 2){
+                    batch.draw(game.res.tile2, sizeEval.getBaseX(x), sizeEval.getBaseY(y) );
+                }else if (GameUpgradeAverage.currentLvl == 3){
+                    batch.draw(game.res.tile3, sizeEval.getBaseX(x), sizeEval.getBaseY(y) );
+                }
             }
         }
-
-        //      batch.draw(game.res.hp, sizeEval.getBaseX(1), sizeEval.getBaseY(1));
 
         batch.end();
     }
@@ -122,18 +230,11 @@ public class GameScreenAverage extends DefaultScreen implements InputProcessor, 
     private void ForText(){
         batch.begin();
         game.res.gamefont.draw(batch, "player: " + player.getLives(), 5, gameStage.getViewport().getScreenY() + gameStage.getHeight() - 4);
-        game.res.gamefont.draw(batch, "death eater: " + gmProper.getEnemy().getLives(), (gameStage.getWidth() / 2) + 25, gameStage.getViewport().getScreenY() + gameStage.getHeight() - 4);
+        game.res.gamefont.draw(batch, "death eater: " + gmProper.getEnemy().getLives(), (gameStage.getWidth() / 2) + 40, gameStage.getViewport().getScreenY() + gameStage.getHeight() - 4);
 
+        game.res.gamefont.draw(batch, "time: " + cntTime, (gameStage.getWidth() / 2) + 90, gameStage.getViewport().getScreenY() + gameStage.getHeight() - 20);
 
-        if (player.getLives() <= 0){
-            //game.res.gamefont.setColor(Color.RED);
-            game.res.gamefont.draw(batch, "OH NO! YOU LOSE!", 0, gameStage.getViewport().getScreenY() + gameStage.getHeight() / 2, gameStage.getWidth(), Align.center, false);
-            //game.res.gamefont.setColor(Color.WHITE);
-        }else if (gmProper.getEnemy().getLives() <= 0){
-            // game.res.gamefont.setColor(Color.BLUE);
-            game.res.gamefont.draw(batch, "YOU WIN!", 0, gameStage.getViewport().getScreenY() + gameStage.getHeight() / 2, gameStage.getWidth(), Align.center, false);
-            //game.res.gamefont.setColor(Color.WHITE);
-        }
+        game.res.gamefont.draw(batch, "AVERAGE Stage " + GameUpgradeAverage.getLevel(), 5, gameStage.getViewport().getScreenY() + gameStage.getHeight() - 20);
 
         batch.end();
     }
@@ -147,7 +248,6 @@ public class GameScreenAverage extends DefaultScreen implements InputProcessor, 
 
         bg.draw(gameStage, game.res);
         drawBase();
-//        gmProper.getEffectTool().draw(batch, sizeEval);
 
         batch.begin();
 
@@ -177,7 +277,7 @@ public class GameScreenAverage extends DefaultScreen implements InputProcessor, 
     public void resize(int width, int height) {
         super.resize(width, height);
         gameStage.getViewport().update(width, height, true);
-//        RetryMove();
+
     }
 
     @Override
@@ -214,62 +314,6 @@ public class GameScreenAverage extends DefaultScreen implements InputProcessor, 
 //            RetryMove();
 
         }
-    }
-
-    @Override
-    public boolean keyDown(int keycode) {
-        switch (keycode){
-            case Input.Keys.UP:
-                TryMove(0,1);
-                break;
-            case Input.Keys.DOWN:
-                TryMove(0,-1);
-                break;
-            case Input.Keys.LEFT:
-                TryMove(-1,0);
-                break;
-            case Input.Keys.RIGHT:
-                TryMove(1,0);
-                break;
-        };
-
-
-        return false;
-    }
-
-    @Override
-    public boolean keyUp(int keycode) {
-        return false;
-    }
-
-    @Override
-    public boolean keyTyped(char character) {
-        return false;
-    }
-
-    @Override
-    public boolean touchDown(int screenX, int screenY, int pointer, int button) {
-        return false;
-    }
-
-    @Override
-    public boolean touchUp(int screenX, int screenY, int pointer, int button) {
-        return false;
-    }
-
-    @Override
-    public boolean touchDragged(int screenX, int screenY, int pointer) {
-        return false;
-    }
-
-    @Override
-    public boolean mouseMoved(int screenX, int screenY) {
-        return false;
-    }
-
-    @Override
-    public boolean scrolled(int amount) {
-        return false;
     }
 
     @Override

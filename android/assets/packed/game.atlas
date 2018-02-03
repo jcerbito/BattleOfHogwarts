@@ -1,89 +1,243 @@
 
 game.png
-size: 512,64
+size: 512,128
 format: RGBA8888
 filter: Nearest,Nearest
 repeat: none
+bigdown
+  rotate: false
+  xy: 79, 72
+  size: 50, 50
+  orig: 50, 50
+  offset: 0, 0
+  index: -1
+bigharry
+  rotate: false
+  xy: 2, 29
+  size: 75, 93
+  orig: 75, 93
+  offset: 0, 0
+  index: -1
+bigleft
+  rotate: false
+  xy: 131, 72
+  size: 50, 50
+  orig: 50, 50
+  offset: 0, 0
+  index: -1
+bigright
+  rotate: false
+  xy: 183, 72
+  size: 50, 50
+  orig: 50, 50
+  offset: 0, 0
+  index: -1
+bigup
+  rotate: false
+  xy: 235, 72
+  size: 50, 50
+  orig: 50, 50
+  offset: 0, 0
+  index: -1
 de1
   rotate: false
-  xy: 2, 2
+  xy: 287, 72
   size: 50, 50
   orig: 50, 50
   offset: 0, 0
   index: -1
 de2
   rotate: false
-  xy: 54, 2
+  xy: 339, 72
   size: 50, 50
   orig: 50, 50
   offset: 0, 0
   index: -1
 de3
   rotate: false
-  xy: 106, 2
+  xy: 391, 72
   size: 50, 50
   orig: 50, 50
   offset: 0, 0
   index: -1
+down
+  rotate: false
+  xy: 187, 19
+  size: 22, 24
+  orig: 22, 24
+  offset: 0, 0
+  index: -1
+hag
+  rotate: false
+  xy: 2, 2
+  size: 25, 25
+  orig: 25, 25
+  offset: 0, 0
+  index: -1
 heart
   rotate: false
-  xy: 210, 27
+  xy: 79, 45
+  size: 25, 25
+  orig: 25, 25
+  offset: 0, 0
+  index: -1
+hg
+  rotate: false
+  xy: 29, 2
   size: 25, 25
   orig: 25, 25
   offset: 0, 0
   index: -1
 hp
   rotate: false
-  xy: 237, 27
+  xy: 106, 45
   size: 25, 25
   orig: 25, 25
   offset: 0, 0
   index: -1
 lb
   rotate: false
-  xy: 264, 27
+  xy: 133, 45
+  size: 25, 25
+  orig: 25, 25
+  offset: 0, 0
+  index: -1
+left
+  rotate: false
+  xy: 135, 19
+  size: 24, 24
+  orig: 24, 24
+  offset: 0, 0
+  index: -1
+right
+  rotate: false
+  xy: 161, 19
+  size: 24, 24
+  orig: 24, 24
+  offset: 0, 0
+  index: -1
+rw
+  rotate: false
+  xy: 160, 45
   size: 25, 25
   orig: 25, 25
   offset: 0, 0
   index: -1
 tile1
   rotate: false
-  xy: 291, 27
+  xy: 187, 45
+  size: 25, 25
+  orig: 25, 25
+  offset: 0, 0
+  index: -1
+tile10
+  rotate: false
+  xy: 376, 45
+  size: 25, 25
+  orig: 25, 25
+  offset: 0, 0
+  index: -1
+tile11
+  rotate: false
+  xy: 403, 45
+  size: 25, 25
+  orig: 25, 25
+  offset: 0, 0
+  index: -1
+tile12
+  rotate: false
+  xy: 430, 45
+  size: 25, 25
+  orig: 25, 25
+  offset: 0, 0
+  index: -1
+tile13
+  rotate: false
+  xy: 457, 45
   size: 25, 25
   orig: 25, 25
   offset: 0, 0
   index: -1
 tile2
   rotate: false
-  xy: 318, 27
+  xy: 214, 45
   size: 25, 25
   orig: 25, 25
   offset: 0, 0
   index: -1
 tile3
   rotate: false
-  xy: 345, 27
+  xy: 241, 45
   size: 25, 25
   orig: 25, 25
   offset: 0, 0
   index: -1
+tile4
+  rotate: false
+  xy: 268, 45
+  size: 25, 25
+  orig: 25, 25
+  offset: 0, 0
+  index: -1
+tile5
+  rotate: false
+  xy: 295, 45
+  size: 25, 25
+  orig: 25, 25
+  offset: 0, 0
+  index: -1
+tile6
+  rotate: false
+  xy: 211, 20
+  size: 23, 23
+  orig: 23, 23
+  offset: 0, 0
+  index: -1
+tile7
+  rotate: false
+  xy: 322, 45
+  size: 25, 25
+  orig: 25, 25
+  offset: 0, 0
+  index: -1
+tile8
+  rotate: false
+  xy: 349, 45
+  size: 25, 25
+  orig: 25, 25
+  offset: 0, 0
+  index: -1
+tile9
+  rotate: false
+  xy: 108, 19
+  size: 25, 24
+  orig: 25, 24
+  offset: 0, 0
+  index: -1
+up
+  rotate: false
+  xy: 56, 2
+  size: 23, 25
+  orig: 23, 25
+  offset: 0, 0
+  index: -1
 voldemort
   rotate: false
-  xy: 158, 2
+  xy: 443, 72
   size: 50, 50
   orig: 50, 50
   offset: 0, 0
   index: -1
 wand
   rotate: false
-  xy: 372, 27
+  xy: 484, 45
   size: 25, 25
   orig: 25, 25
   offset: 0, 0
   index: -1
 wandy
   rotate: false
-  xy: 399, 27
+  xy: 81, 18
   size: 25, 25
   orig: 25, 25
   offset: 0, 0

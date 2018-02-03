@@ -5,6 +5,9 @@ import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.jcerbito.battleofhogwarts.Resources;
 import com.jcerbito.battleofhogwarts.forbg.SizeEval;
 import com.jcerbito.battleofhogwarts.forgameproper.GameUpgrade;
+import com.jcerbito.battleofhogwarts.forgameproper.GameUpgradeEasy;
+import com.jcerbito.battleofhogwarts.screens.ChooseCharacter;
+import com.jcerbito.battleofhogwarts.screens.ChooseCharacterAverage;
 
 /**
  * Created by HP on 10/01/2018.
@@ -23,9 +26,25 @@ public class Player extends ObjectEffect {
         super(lvs);
         locX = lX;
         locY = lY;
-        set(res.hp);
+        if (ChooseCharacter.charLock == 1){
+            set(res.hg);
+        }else{
+            set(res.hp);
+        }
+
+        if (ChooseCharacterAverage.charLock == 1){
+            set(res.hg);
+        }else if (ChooseCharacterAverage.charLock == 2) {
+            set(res.hp);
+        }else if (ChooseCharacterAverage.charLock == 3) {
+            set(res.hag);
+        }
+
+
         //lives = lvs;
         maxLives = GameUpgrade.maxPLives;
+
+
     }
 
     public int getLocX(){

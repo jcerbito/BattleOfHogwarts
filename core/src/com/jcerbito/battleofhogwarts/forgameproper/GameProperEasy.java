@@ -1,19 +1,16 @@
 package com.jcerbito.battleofhogwarts.forgameproper;
 
-import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.math.MathUtils;
-import com.badlogic.gdx.utils.Array;
 import com.jcerbito.battleofhogwarts.BattleOfHogwarts;
 import com.jcerbito.battleofhogwarts.Resources;
-import com.jcerbito.battleofhogwarts.forbg.foreffects.Effect;
 import com.jcerbito.battleofhogwarts.forbg.foreffects.EffectTool;
 import com.jcerbito.battleofhogwarts.forbg.foreffects.LightningBoltFx;
-import com.jcerbito.battleofhogwarts.forgameproper.obj.Enemy;
 import com.jcerbito.battleofhogwarts.forgameproper.obj.EnemyEasy;
 import com.jcerbito.battleofhogwarts.forgameproper.obj.Equipment;
 import com.jcerbito.battleofhogwarts.forgameproper.obj.Player;
-import com.jcerbito.battleofhogwarts.forgameproper.obj.PlayerEasy;
-import com.jcerbito.battleofhogwarts.screens.StartScreen;
+import com.jcerbito.battleofhogwarts.screens.GameOverScreen;
+import com.jcerbito.battleofhogwarts.screens.GameScreenEasy;
+import com.jcerbito.battleofhogwarts.screens.WinScreen;
 
 import java.util.ArrayList;
 
@@ -29,6 +26,7 @@ public class GameProperEasy implements EnemyEasy.EnemyEasyAttackedListener, Ligh
     private static final float EQ_TIME_INTERVAL = 2.0f;
     private static final int MAX_EQ = 3;
     BattleOfHogwarts game;
+
 
     public interface GameEventListener{
         void OnGameEnd(boolean playerWins);
@@ -82,7 +80,7 @@ public class GameProperEasy implements EnemyEasy.EnemyEasyAttackedListener, Ligh
 
         }while (nonEmptyPos);
 
-        equipments.add(Equipment.Create(lx, ly, MathUtils.random(2) == 0 ? Equipment.HEART : Equipment.WAND, game.res));
+        equipments.add(Equipment.Create(lx, ly, MathUtils.random(4) == 0 ? Equipment.HEART : Equipment.WAND, game.res));
 
         lastEqTime = gTime;
     }
@@ -114,12 +112,46 @@ public class GameProperEasy implements EnemyEasy.EnemyEasyAttackedListener, Ligh
 
                 if (currEquipment.getEq() == Equipment.HEART){
                     player.addLives(1);
+                    GameUpgradeEasy.ulock += 1;
                 }else if (currEquipment.getEq() == Equipment.WAND){
                     enemy.damage(GameUpgradeEasy.pDamage);
+
+//                    if (enemy.getLives() <= 0){
+//                        GameUpgradeEasy.currentLvl += 1;
+//                        GameScreenEasy.timePast += 20;
+//
+//                        if (GameUpgradeEasy.currentLvl >= 4){
+//                            game.setScreen(new WinScreen(game));
+//                            GameUpgradeEasy.currentLvl = 1;
+//                            GameScreenEasy.timePast = 16;
+//                            GameUpgradeEasy.ulock += 1;
+//                        }
+//
+//
+//
+//                        GameUpgradeEasy.pLives = player.getLives();
+//                        eventListener.OnGameEnd(true);
+//                    }
                     if (enemy.getLives() <= 0){
-                        GameUpgradeEasy.currentLvl += 1;
-                        GameUpgradeEasy.pLives = player.getLives();
-                        eventListener.OnGameEnd(true);
+                        if (GameUpgradeEasy.currentLvl == 1){
+                            GameUpgradeEasy.currentLvl = 2;
+                            GameScreenEasy.timePast = 21;
+                            GameUpgradeEasy.pLives = player.getLives();
+                            eventListener.OnGameEnd(true);
+                        }else if (GameUpgradeEasy.currentLvl == 2){
+                            GameUpgradeEasy.currentLvl = 3;
+                            GameScreenEasy.timePast = 31;
+                            GameUpgradeEasy.pLives = player.getLives();
+                            eventListener.OnGameEnd(true);
+                        }else if (GameUpgradeEasy.currentLvl == 3){
+                            GameUpgradeEasy.currentLvl = 4;
+                            if (GameUpgradeEasy.currentLvl >= 4){
+                                game.setScreen(new WinScreen(game));
+                                GameUpgradeEasy.currentLvl = 1;
+                                GameScreenEasy.timePast = 16;
+                                GameUpgradeEasy.ulock += 1;
+                            }
+                        }
                     }
 
                 }else if (currEquipment.getEq() == Equipment.WAND2){
@@ -153,9 +185,15 @@ public class GameProperEasy implements EnemyEasy.EnemyEasyAttackedListener, Ligh
     public void OnEffect(LightningBoltFx effect) {
         if(effect.getLocX() == player.getLocX() && effect.getLocY() == player.getLocY()){
             player.damage(1);
-            if(player.getLives() <= 0 ){
+            if(player.getLives() <= 0 && GameUpgradeEasy.currentLvl == 1){
                 GameUpgradeEasy.Reset();
-                //game.setScreen(new StartScreen(game));
+                game.setScreen(new GameOverScreen(game));
+            }else if(player.getLives() <= 0 && GameUpgradeEasy.currentLvl == 2){
+                GameUpgradeEasy.ResetSecondLevel();
+                game.setScreen(new GameOverScreen(game));
+            }else if(player.getLives() <= 0 && GameUpgradeEasy.currentLvl == 3){
+                GameUpgradeEasy.ResetThirdLevel();
+                game.setScreen(new GameOverScreen(game));
             }
         }
     }

@@ -1,18 +1,17 @@
 package com.jcerbito.battleofhogwarts.forgameproper;
 
-import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.math.MathUtils;
-import com.badlogic.gdx.utils.Array;
 import com.jcerbito.battleofhogwarts.BattleOfHogwarts;
 import com.jcerbito.battleofhogwarts.Resources;
-import com.jcerbito.battleofhogwarts.forbg.foreffects.Effect;
 import com.jcerbito.battleofhogwarts.forbg.foreffects.EffectTool;
 import com.jcerbito.battleofhogwarts.forbg.foreffects.LightningBoltFx;
-import com.jcerbito.battleofhogwarts.forgameproper.obj.Enemy;
 import com.jcerbito.battleofhogwarts.forgameproper.obj.EnemyAverage;
 import com.jcerbito.battleofhogwarts.forgameproper.obj.Equipment;
 import com.jcerbito.battleofhogwarts.forgameproper.obj.Player;
-import com.jcerbito.battleofhogwarts.forgameproper.obj.PlayerAverage;
+import com.jcerbito.battleofhogwarts.screens.GameOverScreen;
+import com.jcerbito.battleofhogwarts.screens.GameScreenAverage;
+import com.jcerbito.battleofhogwarts.screens.WinScreen;
+import com.jcerbito.battleofhogwarts.screens.WinScreenAverage;
 
 import java.util.ArrayList;
 
@@ -81,7 +80,7 @@ public class GameProperAverage implements EnemyAverage.EnemyAverageAttackedListe
 
         }while (nonEmptyPos);
 
-        equipments.add(Equipment.Create(lx, ly, MathUtils.random(2) == 0 ? Equipment.HEART : Equipment.WAND, game.res));
+        equipments.add(Equipment.Create(lx, ly, MathUtils.random(4) == 0 ? Equipment.HEART : Equipment.WAND, game.res));
 
         lastEqTime = gTime;
     }
@@ -113,12 +112,30 @@ public class GameProperAverage implements EnemyAverage.EnemyAverageAttackedListe
 
                 if (currEquipment.getEq() == Equipment.HEART){
                     player.addLives(1);
+                    GameUpgradeAverage.ulock += 1;
                 }else if (currEquipment.getEq() == Equipment.WAND){
                     enemy.damage(GameUpgradeAverage.pDamage);
+
                     if (enemy.getLives() <= 0){
-                        GameUpgradeAverage.currentLvl += 1;
-                        GameUpgradeAverage.pLives = player.getLives();
-                        eventListener.OnGameEnd(true);
+                        if (GameUpgradeAverage.currentLvl == 1){
+                            GameUpgradeAverage.currentLvl = 2;
+                            GameScreenAverage.timePast = 31;
+                            GameUpgradeAverage.pLives = player.getLives();
+                            eventListener.OnGameEnd(true);
+                        }else if (GameUpgradeAverage.currentLvl == 2){
+                            GameUpgradeAverage.currentLvl = 3;
+                            GameScreenAverage.timePast = 41;
+                            GameUpgradeAverage.pLives = player.getLives();
+                            eventListener.OnGameEnd(true);
+                        }else if (GameUpgradeAverage.currentLvl == 3){
+                            GameUpgradeAverage.currentLvl = 4;
+                            if (GameUpgradeAverage.currentLvl >= 4){
+                                game.setScreen(new WinScreenAverage(game));
+                                GameUpgradeAverage.currentLvl = 1;
+                                GameScreenAverage.timePast = 21;
+                                GameUpgradeAverage.ulock += 1;
+                            }
+                        }
                     }
 
                 }else if (currEquipment.getEq() == Equipment.WAND2){
@@ -152,8 +169,15 @@ public class GameProperAverage implements EnemyAverage.EnemyAverageAttackedListe
     public void OnEffect(LightningBoltFx effect) {
         if(effect.getLocX() == player.getLocX() && effect.getLocY() == player.getLocY()){
             player.damage(1);
-            if(player.getLives() <= 0 ){
+            if(player.getLives() <= 0 && GameUpgradeAverage.currentLvl == 1){
                 GameUpgradeAverage.Reset();
+                game.setScreen(new GameOverScreen(game));
+            }else if(player.getLives() <= 0 && GameUpgradeAverage.currentLvl == 2){
+                GameUpgradeAverage.ResetSecondLevel();
+                game.setScreen(new GameOverScreen(game));
+            }else if(player.getLives() <= 0 && GameUpgradeAverage.currentLvl == 3){
+                GameUpgradeAverage.ResetThirdLevel();
+                game.setScreen(new GameOverScreen(game));
             }
         }
     }
