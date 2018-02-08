@@ -22,6 +22,8 @@ public class GameUpgradeAverage {
 //    public static int chrlckave = 0;
 //    public static int chrlckkave = 1;
 
+    public static int moveNextLevel = 0;
+
     private static final String UPDT_NAME = "update";
 
     private static final String SAVE_LIVES = "lives";
@@ -32,6 +34,7 @@ public class GameUpgradeAverage {
     private static final String UNLOCK_KEY = "unlocklevel";
     private static final String CHCK_KEY = "checker";
 
+    private static final String MOVE_NEXT = "movenextlevel";
 
 //    private static final String CHARLOCK_KEY_AVE = "charlock";
 //    private static final String CHARLOCK_KEYY_AVE = "charlockk";
@@ -52,6 +55,7 @@ public class GameUpgradeAverage {
         pref.putInteger(SAVE_DAMAGE, pDamage);
         pref.putInteger(UNLOCK_KEY, ulock);
         pref.putInteger(CHCK_KEY, checker);
+        pref.putInteger(MOVE_NEXT, moveNextLevel);
         pref.flush();
     }
 
@@ -63,6 +67,7 @@ public class GameUpgradeAverage {
         pDamage = pref.getInteger(SAVE_DAMAGE, 1);
         ulock = pref.getInteger(UNLOCK_KEY);
         checker = pref.getInteger(CHCK_KEY);
+        moveNextLevel = pref.getInteger(MOVE_NEXT);
 //        chrlckave = pref.getInteger(CHARLOCK_KEY_AVE);
 //        chrlckkave = pref.getInteger(CHARLOCK_KEYY_AVE);
 

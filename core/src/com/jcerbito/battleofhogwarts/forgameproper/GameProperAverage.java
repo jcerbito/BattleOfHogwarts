@@ -134,6 +134,7 @@ public class GameProperAverage implements EnemyAverage.EnemyAverageAttackedListe
                                 GameUpgradeAverage.currentLvl = 1;
                                 GameScreenAverage.timePast = 21;
                                 GameUpgradeAverage.ulock += 1;
+                                GameUpgradeAverage.moveNextLevel = 1;
                             }
                         }
                     }

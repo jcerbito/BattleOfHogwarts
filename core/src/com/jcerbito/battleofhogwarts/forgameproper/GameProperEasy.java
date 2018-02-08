@@ -28,6 +28,8 @@ public class GameProperEasy implements EnemyEasy.EnemyEasyAttackedListener, Ligh
     BattleOfHogwarts game;
 
 
+
+
     public interface GameEventListener{
         void OnGameEnd(boolean playerWins);
     }
@@ -150,6 +152,8 @@ public class GameProperEasy implements EnemyEasy.EnemyEasyAttackedListener, Ligh
                                 GameUpgradeEasy.currentLvl = 1;
                                 GameScreenEasy.timePast = 16;
                                 GameUpgradeEasy.ulock += 1;
+                                GameUpgradeEasy.moveNextLevel = 1;
+
                             }
                         }
                     }

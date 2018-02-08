@@ -133,6 +133,7 @@ public class GameProperDiff implements EnemyDiff.EnemyDiffAttackedListener, Ligh
                                 GameUpgradeDiff.currentLvl = 1;
                                 GameScreenDiff.timePast = 26;
                                 GameUpgradeDiff.ulock += 1;
+
                             }
                         }
                     }

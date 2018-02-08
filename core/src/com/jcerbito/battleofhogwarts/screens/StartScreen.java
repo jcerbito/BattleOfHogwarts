@@ -76,6 +76,8 @@ public class StartScreen extends DefaultScreen {
         final TextButton.TextButtonStyle buttonStyle2 = new TextButton.TextButtonStyle();
         buttonStyle2.font = game.res.gamefont;
 
+
+
        // buttonStyle.fontColor = Color.WHITE;
 
         TextButton ulockBtn = new TextButton(" " + (GameUpgradeEasy.ulock + GameUpgradeAverage.ulock + GameUpgradeDiff.ulock), buttonStyle);
@@ -104,7 +106,9 @@ public class StartScreen extends DefaultScreen {
         final TextButton aveBtn = new TextButton("AVERAGE", buttonStyle1);
         aveBtn.setPosition((uiStage.getWidth() - aveBtn.getWidth()) / 2, (uiStage.getHeight() / 4) - 5);
 
-        if(GameUpgradeEasy.ulock >= 1){
+
+
+        if(GameUpgradeEasy.moveNextLevel == 1){
             aveBtn.addListener(new ClickListener(){
                 public boolean touchDown(InputEvent event, float x, float y, int pointer, int button){
                     aveBtn.setPosition((uiStage.getWidth() - aveBtn.getWidth()) / 2, (uiStage.getHeight() / 4) - 7);
@@ -117,12 +121,24 @@ public class StartScreen extends DefaultScreen {
                     game.setScreen(new ChooseCharacterAverage(game));
                 }
             });
+        }else{
+            aveBtn.addListener(new ClickListener(){
+                public boolean touchDown(InputEvent event, float x, float y, int pointer, int button){
+                    aveBtn.setPosition((uiStage.getWidth() - aveBtn.getWidth()) / 2, (uiStage.getHeight() / 4) - 7);
+                    aveBtn.setText("COMPLETE EASY LEVEL FIRST!!!");
+                    return true;
+                }
+
+                public void touchUp(InputEvent event, float x, float y, int pointer, int button){
+                    aveBtn.setText("AVERAGE");
+                }
+            });
         }
 
        final TextButton diffBtn = new TextButton("DIFFICULT", buttonStyle2);
         diffBtn.setPosition((uiStage.getWidth() - diffBtn.getWidth()) / 2, (uiStage.getHeight() / 5) - 16);
 
-        if(GameUpgradeAverage.ulock >= 1) {
+        if(GameUpgradeAverage.moveNextLevel == 1) {
             diffBtn.addListener(new ClickListener() {
                 public boolean touchDown(InputEvent event, float x, float y, int pointer, int button){
                     diffBtn.setPosition((uiStage.getWidth() - diffBtn.getWidth()) / 2, (uiStage.getHeight() / 5) - 18);
@@ -133,6 +149,18 @@ public class StartScreen extends DefaultScreen {
                 public void touchUp(InputEvent event, float x, float y, int pointer, int button) {
                     dispose();
                     game.setScreen(new ChooseCharacterDiff(game));
+                }
+            });
+        }else{
+            diffBtn.addListener(new ClickListener() {
+                public boolean touchDown(InputEvent event, float x, float y, int pointer, int button){
+                    diffBtn.setPosition((uiStage.getWidth() - diffBtn.getWidth()) / 2, (uiStage.getHeight() / 5) - 18);
+                    diffBtn.setText("COMPLETE AVERAGE LEVEL FIRST!!!");
+                    return true;
+                }
+
+                public void touchUp(InputEvent event, float x, float y, int pointer, int button) {
+                    diffBtn.setText("DIFFICULT");
                 }
             });
         }

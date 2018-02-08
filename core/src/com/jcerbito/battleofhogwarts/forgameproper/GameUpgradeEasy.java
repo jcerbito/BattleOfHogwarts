@@ -24,6 +24,8 @@ public class GameUpgradeEasy {
     public static int chrlck = 0;
     public static int chrlckk = 1;
 
+    public static int moveNextLevel = 0;
+
     private static final String UPDT_NAME = "update2";
 
     private static final String SAVE_LIVES = "lives";
@@ -33,6 +35,9 @@ public class GameUpgradeEasy {
 
     private static final String UNLOCK_KEY = "unlocklevel";
     private static final String CHCK_KEY = "checker";
+
+    private static final String MOVE_NEXT = "movenextlevel";
+
 
 //    private static final String CHARLOCK_KEY = "charlock";
 //    private static final String CHARLOCK_KEYY = "charlockk";
@@ -56,6 +61,7 @@ public class GameUpgradeEasy {
         pref.putInteger(SAVE_DAMAGE, pDamage);
         pref.putInteger(UNLOCK_KEY, ulock);
         pref.putInteger(CHCK_KEY, checker);
+        pref.putInteger(MOVE_NEXT, moveNextLevel);
 //        pref.putInteger(CHARLOCK_KEY, chrlck);
 //        pref.putInteger(CHARLOCK_KEYY, chrlckk);
         pref.flush();
@@ -69,6 +75,7 @@ public class GameUpgradeEasy {
         pDamage = pref.getInteger(SAVE_DAMAGE, 1);
         ulock = pref.getInteger(UNLOCK_KEY);
         checker = pref.getInteger(CHCK_KEY);
+        moveNextLevel = pref.getInteger(MOVE_NEXT);
 //        chrlck = pref.getInteger(CHARLOCK_KEY);
 //        chrlckk = pref.getInteger(CHARLOCK_KEYY);
     }
