@@ -52,6 +52,13 @@ public class StartScreen extends DefaultScreen {
         helpButton.setPosition((uiStage.getWidth() - helpButton.getWidth()) / 2 + 130, (uiStage.getHeight() / 2) + 83);
 
         helpButton.addListener(new ClickListener(){
+            public boolean touchDown(InputEvent event, float x, float y, int pointer, int button){
+                helpButton.setPosition((uiStage.getWidth() - helpButton.getWidth()) / 2 + 130, (uiStage.getHeight() / 2) + 81);
+
+                return true;
+            }
+
+
             public void touchUp(InputEvent event, float x, float y, int pointer, int button){
                 dispose();
                 val = 1;
@@ -60,8 +67,14 @@ public class StartScreen extends DefaultScreen {
             }
         });
 
-        TextButton.TextButtonStyle buttonStyle = new TextButton.TextButtonStyle();
+        final TextButton.TextButtonStyle buttonStyle = new TextButton.TextButtonStyle();
         buttonStyle.font = game.res.gamefont;
+
+        final TextButton.TextButtonStyle buttonStyle1 = new TextButton.TextButtonStyle();
+        buttonStyle1.font = game.res.gamefont;
+
+        final TextButton.TextButtonStyle buttonStyle2 = new TextButton.TextButtonStyle();
+        buttonStyle2.font = game.res.gamefont;
 
        // buttonStyle.fontColor = Color.WHITE;
 
@@ -72,13 +85,11 @@ public class StartScreen extends DefaultScreen {
         final TextButton easyBtn = new TextButton("EASY", buttonStyle);
         easyBtn.setPosition((uiStage.getWidth() - easyBtn.getWidth()) / 2, (uiStage.getHeight() / 3));
 
-
-
-
-
         easyBtn.addListener(new ClickListener(){
             public boolean touchDown(InputEvent event, float x, float y, int pointer, int button){
-                easyBtn.setPosition((uiStage.getWidth() - easyBtn.getWidth()) / 2, (uiStage.getHeight() / 3) - 3);
+                easyBtn.setPosition((uiStage.getWidth() - easyBtn.getWidth()) / 2, (uiStage.getHeight() / 3) - 2);
+                buttonStyle.fontColor = Color.YELLOW;
+
                 return true;
             }
 
@@ -89,11 +100,18 @@ public class StartScreen extends DefaultScreen {
             }
         });
 
-        TextButton aveBtn = new TextButton("AVERAGE", buttonStyle);
+
+        final TextButton aveBtn = new TextButton("AVERAGE", buttonStyle1);
         aveBtn.setPosition((uiStage.getWidth() - aveBtn.getWidth()) / 2, (uiStage.getHeight() / 4) - 5);
 
         if(GameUpgradeEasy.ulock >= 1){
             aveBtn.addListener(new ClickListener(){
+                public boolean touchDown(InputEvent event, float x, float y, int pointer, int button){
+                    aveBtn.setPosition((uiStage.getWidth() - aveBtn.getWidth()) / 2, (uiStage.getHeight() / 4) - 7);
+                    buttonStyle1.fontColor = Color.YELLOW;
+                    return true;
+                }
+
                 public void touchUp(InputEvent event, float x, float y, int pointer, int button){
                     dispose();
                     game.setScreen(new ChooseCharacterAverage(game));
@@ -101,10 +119,17 @@ public class StartScreen extends DefaultScreen {
             });
         }
 
-        TextButton diffBtn = new TextButton("DIFFICULT", buttonStyle);
+       final TextButton diffBtn = new TextButton("DIFFICULT", buttonStyle2);
         diffBtn.setPosition((uiStage.getWidth() - diffBtn.getWidth()) / 2, (uiStage.getHeight() / 5) - 16);
+
         if(GameUpgradeAverage.ulock >= 1) {
             diffBtn.addListener(new ClickListener() {
+                public boolean touchDown(InputEvent event, float x, float y, int pointer, int button){
+                    diffBtn.setPosition((uiStage.getWidth() - diffBtn.getWidth()) / 2, (uiStage.getHeight() / 5) - 18);
+                    buttonStyle2.fontColor = Color.YELLOW;
+                    return true;
+                }
+
                 public void touchUp(InputEvent event, float x, float y, int pointer, int button) {
                     dispose();
                     game.setScreen(new ChooseCharacterDiff(game));

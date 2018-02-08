@@ -3,6 +3,7 @@ package com.jcerbito.battleofhogwarts.screens;
 import com.badlogic.gdx.Application;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input;
+import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.math.MathUtils;
@@ -112,13 +113,20 @@ public class GameScreenEasy extends DefaultScreen implements GameProperEasy.Game
             }
         });
 
-        TextButton.TextButtonStyle buttonStyle = new TextButton.TextButtonStyle();
+        final TextButton.TextButtonStyle buttonStyle = new TextButton.TextButtonStyle();
         buttonStyle.font = game.res.gamefont;
 
-        TextButton quitBtn = new TextButton("QUIT GAME", buttonStyle);
-        quitBtn.setPosition((gameStage.getWidth() - quitBtn.getWidth()) / 2, 0);
+        final TextButton quitBtn = new TextButton("QUIT GAME", buttonStyle);
+        quitBtn.setPosition((gameStage.getWidth() - quitBtn.getWidth()) / 2, 10);
 
             quitBtn.addListener(new ClickListener(){
+                public boolean touchDown(InputEvent event, float x, float y, int pointer, int button){
+                    quitBtn.setPosition((gameStage.getWidth() - quitBtn.getWidth()) / 2, 8);
+                    buttonStyle.fontColor = Color.RED;
+                    return true;
+                }
+
+
                 public void touchUp(InputEvent event, float x, float y, int pointer, int button){
                     dispose();
                     game.setScreen(new StartScreen(game));

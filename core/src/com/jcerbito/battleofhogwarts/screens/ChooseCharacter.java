@@ -1,6 +1,7 @@
 package com.jcerbito.battleofhogwarts.screens;
 
 import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
@@ -87,8 +88,11 @@ public class ChooseCharacter extends DefaultScreen {
             });
         }
 
-        TextButton.TextButtonStyle buttonStyle = new TextButton.TextButtonStyle();
+        final TextButton.TextButtonStyle buttonStyle = new TextButton.TextButtonStyle();
         buttonStyle.font = game.res.gamefont;
+
+        final TextButton.TextButtonStyle buttonStyle1 = new TextButton.TextButtonStyle();
+        buttonStyle1.font = game.res.gamefont;
 
         TextButton aBtn = new TextButton("COLLECT MORE POTIONS", buttonStyle);
         TextButton qBtn = new TextButton("TO UNLOCK HERMIONE!", buttonStyle);
@@ -96,10 +100,16 @@ public class ChooseCharacter extends DefaultScreen {
 
         hBtn.setPosition((uiStage.getWidth() - hBtn.getWidth()) / 2, 220) ;
 
-        TextButton ex = new TextButton("CLICK HERE TO GO BACK", buttonStyle);
+        final TextButton ex = new TextButton("CLICK HERE TO GO BACK", buttonStyle1);
         ex.setPosition((uiStage.getWidth() - ex.getWidth()) / 2, 20);
 
         ex.addListener(new ClickListener(){
+            public boolean touchDown(InputEvent event, float x, float y, int pointer, int button){
+                ex.setPosition((uiStage.getWidth() - ex.getWidth()) / 2, 20 - 2);
+                buttonStyle1.fontColor = Color.CYAN;
+                return true;
+            }
+
             public void touchUp(InputEvent event, float x, float y, int pointer, int button){
                 dispose();
                 game.setScreen(new StartScreen(game));

@@ -65,7 +65,7 @@ public class MechanicsScreenFive extends DefaultScreen {
         nextBtn.addListener(new ClickListener(){
             public void touchUp(InputEvent event, float x, float y, int pointer, int button){
                 dispose();
-                game.setScreen(new StartScreen(game));
+                game.setScreen(new MechanicsScreenSix(game));
             }
         });
 
