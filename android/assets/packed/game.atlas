@@ -60,13 +60,6 @@ de3
   orig: 50, 50
   offset: 0, 0
   index: -1
-down
-  rotate: false
-  xy: 187, 19
-  size: 22, 24
-  orig: 22, 24
-  offset: 0, 0
-  index: -1
 hag
   rotate: false
   xy: 2, 2
@@ -100,20 +93,6 @@ lb
   xy: 133, 45
   size: 25, 25
   orig: 25, 25
-  offset: 0, 0
-  index: -1
-left
-  rotate: false
-  xy: 135, 19
-  size: 24, 24
-  orig: 24, 24
-  offset: 0, 0
-  index: -1
-right
-  rotate: false
-  xy: 161, 19
-  size: 24, 24
-  orig: 24, 24
   offset: 0, 0
   index: -1
 rw
@@ -188,7 +167,7 @@ tile5
   index: -1
 tile6
   rotate: false
-  xy: 211, 20
+  xy: 110, 20
   size: 23, 23
   orig: 23, 23
   offset: 0, 0
@@ -209,16 +188,9 @@ tile8
   index: -1
 tile9
   rotate: false
-  xy: 108, 19
+  xy: 83, 19
   size: 25, 24
   orig: 25, 24
-  offset: 0, 0
-  index: -1
-up
-  rotate: false
-  xy: 56, 2
-  size: 23, 25
-  orig: 23, 25
   offset: 0, 0
   index: -1
 voldemort
@@ -230,14 +202,14 @@ voldemort
   index: -1
 wand
   rotate: false
-  xy: 484, 45
+  xy: 56, 2
   size: 25, 25
   orig: 25, 25
   offset: 0, 0
   index: -1
 wandy
   rotate: false
-  xy: 81, 18
+  xy: 484, 45
   size: 25, 25
   orig: 25, 25
   offset: 0, 0
