@@ -2,6 +2,7 @@ package com.jcerbito.battleofhogwarts.screens;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input;
+import com.badlogic.gdx.audio.Music;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.Texture;
@@ -35,6 +36,18 @@ public class StartScreen extends DefaultScreen {
     private TextureRegionDrawable helpDrawable;
     private ImageButton helpButton;
 
+    private Texture mus;
+    private TextureRegion musRegion;
+    private TextureRegionDrawable musDrawable;
+    private ImageButton musButton;
+
+    private Texture musTwo;
+    private TextureRegion musTwoRegion;
+    private TextureRegionDrawable musTwoDrawable;
+    private ImageButton musTwoButton;
+
+    Music hptheme;
+
     public static int val = 0;
 
     void startUI(){
@@ -49,11 +62,11 @@ public class StartScreen extends DefaultScreen {
         helpRegion = new TextureRegion(help);
         helpDrawable = new TextureRegionDrawable(helpRegion);
         helpButton = new ImageButton(helpDrawable);
-        helpButton.setPosition((uiStage.getWidth() - helpButton.getWidth()) / 2 + 130, (uiStage.getHeight() / 2) + 83);
+        helpButton.setPosition((uiStage.getWidth() - helpButton.getWidth()) / 2 + 75, (uiStage.getHeight() / 2) + 83);
 
         helpButton.addListener(new ClickListener(){
             public boolean touchDown(InputEvent event, float x, float y, int pointer, int button){
-                helpButton.setPosition((uiStage.getWidth() - helpButton.getWidth()) / 2 + 130, (uiStage.getHeight() / 2) + 81);
+                helpButton.setPosition((uiStage.getWidth() - helpButton.getWidth()) / 2 + 75, (uiStage.getHeight() / 2) + 81);
 
                 return true;
             }
@@ -66,6 +79,48 @@ public class StartScreen extends DefaultScreen {
 
             }
         });
+
+        mus = new Texture(Gdx.files.internal("off.png"));
+        musRegion = new TextureRegion(mus);
+        musDrawable = new TextureRegionDrawable(musRegion);
+        musButton = new ImageButton(musDrawable);
+        musButton.setPosition((uiStage.getWidth() - musButton.getWidth()) / 2 + 130, (uiStage.getHeight() / 2) + 83);
+
+        musTwo = new Texture(Gdx.files.internal("on.png"));
+        musTwoRegion = new TextureRegion(musTwo);
+        musTwoDrawable = new TextureRegionDrawable(musTwoRegion);
+        musTwoButton = new ImageButton(musTwoDrawable);
+        musTwoButton.setPosition((uiStage.getWidth() - musTwoButton.getWidth()) / 2 + 103, (uiStage.getHeight() / 2) + 83);
+
+        musButton.addListener(new ClickListener(){
+            public boolean touchDown(InputEvent event, float x, float y, int pointer, int button){
+                musButton.setPosition((uiStage.getWidth() - musButton.getWidth()) / 2 + 130, (uiStage.getHeight() / 2) + 81);
+                hptheme.stop();
+                return true;
+            }
+
+            public void touchUp(InputEvent event, float x, float y, int pointer, int button){
+                musButton.setPosition((uiStage.getWidth() - musButton.getWidth()) / 2 + 130, (uiStage.getHeight() / 2) + 83);
+            }
+        });
+
+        musTwoButton.addListener(new ClickListener(){
+            public boolean touchDown(InputEvent event, float x, float y, int pointer, int button){
+                musTwoButton.setPosition((uiStage.getWidth() - musTwoButton.getWidth()) / 2 + 103, (uiStage.getHeight() / 2) + 81);
+                hptheme.isLooping();
+                hptheme.play();
+                return true;
+            }
+
+            public void touchUp(InputEvent event, float x, float y, int pointer, int button){
+                musTwoButton.setPosition((uiStage.getWidth() - musTwoButton.getWidth()) / 2 + 103, (uiStage.getHeight() / 2) + 83);
+            }
+
+
+        });
+
+
+
 
         final TextButton.TextButtonStyle buttonStyle = new TextButton.TextButtonStyle();
         buttonStyle.font = game.res.gamefont;
@@ -191,6 +246,8 @@ public class StartScreen extends DefaultScreen {
         uiStage.addActor(easyBtn);
         uiStage.addActor(potion);
         uiStage.addActor(helpButton);
+        uiStage.addActor(musButton);
+        uiStage.addActor(musTwoButton);
 
     }
 
@@ -199,6 +256,9 @@ public class StartScreen extends DefaultScreen {
 
         FitViewport viewport = new FitViewport(300,220); //160,120
         uiStage = new Stage(viewport);
+
+        hptheme = Gdx.audio.newMusic(Gdx.files.internal("music/harrypottertheme.ogg"));
+
         Gdx.input.setInputProcessor(uiStage);
         startUI();
     }
