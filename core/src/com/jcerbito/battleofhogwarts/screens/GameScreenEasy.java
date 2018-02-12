@@ -52,6 +52,8 @@ public class GameScreenEasy extends DefaultScreen implements GameProperEasy.Game
     public static float timePast = 16.0f;
     public static int cntTime;
 
+
+
     private static final float SHAKE_TIME = 0.3f;
     private static final float SHAKE_DIST = 4.0f;
 
@@ -148,7 +150,7 @@ public class GameScreenEasy extends DefaultScreen implements GameProperEasy.Game
         ctrlGrp = new Group();
         gameStage.addActor(ctrlGrp);
 
-        if (Gdx.app.getType() == Application.ApplicationType.Android)
+//        if (Gdx.app.getType() == Application.ApplicationType.Android)
         {
             allDir();
         }
@@ -170,10 +172,16 @@ public class GameScreenEasy extends DefaultScreen implements GameProperEasy.Game
     }
 
     private void allDir() {
-        indiDir(0, 1, game.res.up, 1, gameStage.getHeight() / 2 );
-        indiDir(0, -1, game.res.down, (gameStage.getWidth() / 2) + 170, 0 );
+//        indiDir(0, 1, game.res.up, 1, gameStage.getHeight() / 2 );
+//        indiDir(0, -1, game.res.down, (gameStage.getWidth() / 2) + 170, 0 );
+//
+//        indiDir(-1, 0, game.res.left, 1, gameStage.getHeight() / 4 );
+//        indiDir(1, 0, game.res.right, (gameStage.getWidth() / 2) + 170, gameStage.getHeight() / 4 );
 
-        indiDir(-1, 0, game.res.left, 1, gameStage.getHeight() / 4 );
+        indiDir(0, 1, game.res.up, 1, gameStage.getHeight() / 2 );
+        indiDir(0, -1, game.res.down, 1, gameStage.getHeight() / 4 );
+
+        indiDir(-1, 0, game.res.left, (gameStage.getWidth() / 2) + 170, 0 );
         indiDir(1, 0, game.res.right, (gameStage.getWidth() / 2) + 170, gameStage.getHeight() / 4 );
 
 
@@ -222,7 +230,7 @@ public class GameScreenEasy extends DefaultScreen implements GameProperEasy.Game
                 }else if (GameUpgradeEasy.currentLvl == 2){
                     batch.draw(game.res.tile5, sizeEval.getBaseX(x), sizeEval.getBaseY(y) );
                 }else if (GameUpgradeEasy.currentLvl == 3){
-                    batch.draw(game.res.tile3, sizeEval.getBaseX(x), sizeEval.getBaseY(y) );
+                    batch.draw(game.res.tile9, sizeEval.getBaseX(x), sizeEval.getBaseY(y) );
                 }
             }
         }

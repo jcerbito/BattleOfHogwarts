@@ -50,6 +50,8 @@ public class StartScreen extends DefaultScreen {
 
     public static int val = 0;
 
+    public static boolean musOn;
+
     void startUI(){
         bgTexture = new Texture(Gdx.files.internal("bckgrnddd.jpg"));
         Image bckgrnd = new Image(bgTexture);
@@ -93,27 +95,32 @@ public class StartScreen extends DefaultScreen {
         musTwoButton.setPosition((uiStage.getWidth() - musTwoButton.getWidth()) / 2 + 103, (uiStage.getHeight() / 2) + 83);
 
         musButton.addListener(new ClickListener(){
-            public boolean touchDown(InputEvent event, float x, float y, int pointer, int button){
-                musButton.setPosition((uiStage.getWidth() - musButton.getWidth()) / 2 + 130, (uiStage.getHeight() / 2) + 81);
-                hptheme.stop();
-                return true;
-            }
+//            public boolean touchDown(InputEvent event, float x, float y, int pointer, int button){
+////                musButton.setPosition((uiStage.getWidth() - musButton.getWidth()) / 2 + 130, (uiStage.getHeight() / 2) + 81);
+//                stopMusic();
+//                return true;
+//            }
 
             public void touchUp(InputEvent event, float x, float y, int pointer, int button){
-                musButton.setPosition((uiStage.getWidth() - musButton.getWidth()) / 2 + 130, (uiStage.getHeight() / 2) + 83);
+//                musButton.setPosition((uiStage.getWidth() - musButton.getWidth()) / 2 + 130, (uiStage.getHeight() / 2) + 83);
+                musOn = false;
+                BattleOfHogwarts.stopMusic();
+                super.touchUp(event,x,y,pointer,button);
             }
         });
 
         musTwoButton.addListener(new ClickListener(){
-            public boolean touchDown(InputEvent event, float x, float y, int pointer, int button){
-                musTwoButton.setPosition((uiStage.getWidth() - musTwoButton.getWidth()) / 2 + 103, (uiStage.getHeight() / 2) + 81);
-                hptheme.isLooping();
-                hptheme.play();
-                return true;
-            }
+//            public boolean touchDown(InputEvent event, float x, float y, int pointer, int button){
+////                musTwoButton.setPosition((uiStage.getWidth() - musTwoButton.getWidth()) / 2 + 103, (uiStage.getHeight() / 2) + 81);
+//                playMusic();
+//                return true;
+//            }
 
             public void touchUp(InputEvent event, float x, float y, int pointer, int button){
-                musTwoButton.setPosition((uiStage.getWidth() - musTwoButton.getWidth()) / 2 + 103, (uiStage.getHeight() / 2) + 83);
+//                musTwoButton.setPosition((uiStage.getWidth() - musTwoButton.getWidth()) / 2 + 103, (uiStage.getHeight() / 2) + 83);
+                musOn = true;
+                BattleOfHogwarts.playMusic();
+                super.touchUp(event,x,y,pointer,button);
             }
 
 
@@ -145,7 +152,7 @@ public class StartScreen extends DefaultScreen {
         easyBtn.addListener(new ClickListener(){
             public boolean touchDown(InputEvent event, float x, float y, int pointer, int button){
                 easyBtn.setPosition((uiStage.getWidth() - easyBtn.getWidth()) / 2, (uiStage.getHeight() / 3) - 2);
-                buttonStyle.fontColor = Color.YELLOW;
+               buttonStyle.fontColor = Color.YELLOW;
 
                 return true;
             }
@@ -257,11 +264,16 @@ public class StartScreen extends DefaultScreen {
         FitViewport viewport = new FitViewport(300,220); //160,120
         uiStage = new Stage(viewport);
 
-        hptheme = Gdx.audio.newMusic(Gdx.files.internal("music/harrypottertheme.ogg"));
+
 
         Gdx.input.setInputProcessor(uiStage);
         startUI();
     }
+
+
+
+
+
 
     @Override
     public void render(float delta){

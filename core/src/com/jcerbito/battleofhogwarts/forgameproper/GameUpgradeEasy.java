@@ -2,7 +2,9 @@ package com.jcerbito.battleofhogwarts.forgameproper;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Preferences;
+import com.badlogic.gdx.audio.Music;
 import com.jcerbito.battleofhogwarts.screens.GameScreenEasy;
+import com.jcerbito.battleofhogwarts.screens.StartScreen;
 
 //import static com.jcerbito.battleofhogwarts.forgameproper.GameProperEasy.gameTime;
 
@@ -37,6 +39,8 @@ public class GameUpgradeEasy {
     private static final String CHCK_KEY = "checker";
 
     private static final String MOVE_NEXT = "movenextlevel";
+
+
 
 
 //    private static final String CHARLOCK_KEY = "charlock";
@@ -104,6 +108,8 @@ public class GameUpgradeEasy {
         pDamage = 1;
         GameScreenEasy.timePast = 31;
     }
+
+
 
 }
 

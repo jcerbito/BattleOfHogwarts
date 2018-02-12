@@ -170,9 +170,9 @@ public class GameScreenAverage extends DefaultScreen implements GameProperAverag
 
     private void allDir() {
         indiDir(0, 1, game.res.up, 1, gameStage.getHeight() / 2 );
-        indiDir(0, -1, game.res.down, (gameStage.getWidth() / 2) + 170, 0 );
+        indiDir(0, -1, game.res.down, 1, gameStage.getHeight() / 4 );
 
-        indiDir(-1, 0, game.res.left, 1, gameStage.getHeight() / 4 );
+        indiDir(-1, 0, game.res.left, (gameStage.getWidth() / 2) + 170, 0 );
         indiDir(1, 0, game.res.right, (gameStage.getWidth() / 2) + 170, gameStage.getHeight() / 4 );
 
     }
@@ -213,9 +213,9 @@ public class GameScreenAverage extends DefaultScreen implements GameProperAverag
         for( int x = 0; x <= GameProperAverage.MAX_BASEX; x++){
             for ( int y = 0; y <= GameProperAverage.MAX_BASEY; y++){
                 if (GameUpgradeAverage.currentLvl == 1){
-                    batch.draw(game.res.tile5, sizeEval.getBaseX(x), sizeEval.getBaseY(y) );
+                    batch.draw(game.res.tile3, sizeEval.getBaseX(x), sizeEval.getBaseY(y) );
                 }else if (GameUpgradeAverage.currentLvl == 2){
-                    batch.draw(game.res.tile2, sizeEval.getBaseX(x), sizeEval.getBaseY(y) );
+                    batch.draw(game.res.tile5, sizeEval.getBaseX(x), sizeEval.getBaseY(y) );
                 }else if (GameUpgradeAverage.currentLvl == 3){
                     batch.draw(game.res.tile3, sizeEval.getBaseX(x), sizeEval.getBaseY(y) );
                 }

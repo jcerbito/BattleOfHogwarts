@@ -1,6 +1,9 @@
 package com.jcerbito.battleofhogwarts;
 
 import com.badlogic.gdx.Game;
+import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.audio.Music;
+import com.badlogic.gdx.audio.Sound;
 import com.jcerbito.battleofhogwarts.forgameproper.GameUpgrade;
 import com.jcerbito.battleofhogwarts.forgameproper.GameUpgradeAverage;
 import com.jcerbito.battleofhogwarts.forgameproper.GameUpgradeDiff;
@@ -11,6 +14,10 @@ import com.jcerbito.battleofhogwarts.screens.StartScreen;
 public class BattleOfHogwarts extends Game {
 
 	public Resources res;
+
+	static Music hptheme;
+
+
 	
 	@Override
 	public void create () {
@@ -20,6 +27,23 @@ public class BattleOfHogwarts extends Game {
 		GameUpgradeDiff.Load();
 		setScreen(new StartScreen(this));
 	}
+
+	public static void playMusic(){
+		hptheme = Gdx.audio.newMusic(Gdx.files.internal("music/harrypottertheme.ogg"));
+		hptheme.setLooping(true);
+		hptheme.play();
+	}
+
+	public static void stopMusic(){
+
+		if (hptheme != null){
+			hptheme.stop();
+			hptheme = null;
+		}
+	}
+
+
+
 
 	@Override
 	public void render () {

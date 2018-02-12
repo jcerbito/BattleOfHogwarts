@@ -1,5 +1,7 @@
 package com.jcerbito.battleofhogwarts.forgameproper;
 
+import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.audio.Sound;
 import com.badlogic.gdx.math.MathUtils;
 import com.jcerbito.battleofhogwarts.BattleOfHogwarts;
 import com.jcerbito.battleofhogwarts.Resources;
@@ -10,6 +12,7 @@ import com.jcerbito.battleofhogwarts.forgameproper.obj.Equipment;
 import com.jcerbito.battleofhogwarts.forgameproper.obj.Player;
 import com.jcerbito.battleofhogwarts.screens.GameOverScreen;
 import com.jcerbito.battleofhogwarts.screens.GameScreenAverage;
+import com.jcerbito.battleofhogwarts.screens.StartScreen;
 import com.jcerbito.battleofhogwarts.screens.WinScreen;
 import com.jcerbito.battleofhogwarts.screens.WinScreenAverage;
 
@@ -27,6 +30,10 @@ public class GameProperAverage implements EnemyAverage.EnemyAverageAttackedListe
     private static final float EQ_TIME_INTERVAL = 3.0f;
     private static final int MAX_EQ = 3;
     BattleOfHogwarts game;
+
+    Sound heal;
+    Sound spell;
+    Sound hit;
 
     public interface GameEventListener{
         void OnGameEnd(boolean playerWins);
@@ -112,10 +119,11 @@ public class GameProperAverage implements EnemyAverage.EnemyAverageAttackedListe
 
                 if (currEquipment.getEq() == Equipment.HEART){
                     player.addLives(1);
+                    playSoundHeal();
                     GameUpgradeAverage.ulock += 1;
                 }else if (currEquipment.getEq() == Equipment.WAND){
                     enemy.damage(GameUpgradeAverage.pDamage);
-
+                    playSoundSpell();
                     if (enemy.getLives() <= 0){
                         if (GameUpgradeAverage.currentLvl == 1){
                             GameUpgradeAverage.currentLvl = 2;
@@ -154,6 +162,27 @@ public class GameProperAverage implements EnemyAverage.EnemyAverageAttackedListe
         return effectTool;
     }
 
+    public void playSoundHeal(){
+        if (StartScreen.musOn == true){
+            heal = Gdx.audio.newSound(Gdx.files.internal("music/healspell1.ogg"));
+            heal.play();
+        }
+    }
+
+    public void playSoundSpell(){
+        if (StartScreen.musOn == true){
+            spell = Gdx.audio.newSound(Gdx.files.internal("music/spell3.wav"));
+            spell.play();
+        }
+    }
+
+    public void playSoundHit(){
+        if (StartScreen.musOn == true){
+            hit = Gdx.audio.newSound(Gdx.files.internal("music/hit.ogg"));
+            hit.play();
+        }
+    }
+
 
     @Override
     public void OnAttack(boolean[][] tiles) {
@@ -170,6 +199,7 @@ public class GameProperAverage implements EnemyAverage.EnemyAverageAttackedListe
     public void OnEffect(LightningBoltFx effect) {
         if(effect.getLocX() == player.getLocX() && effect.getLocY() == player.getLocY()){
             player.damage(1);
+            playSoundHit();
             if(player.getLives() <= 0 && GameUpgradeAverage.currentLvl == 1){
                 GameUpgradeAverage.Reset();
                 game.setScreen(new GameOverScreen(game));

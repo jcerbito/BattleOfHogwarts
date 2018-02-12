@@ -173,9 +173,9 @@ public class GameScreenDiff extends DefaultScreen implements GameProperDiff.Game
 
     private void allDir() {
         indiDir(0, 1, game.res.up, 1, gameStage.getHeight() / 2 );
-        indiDir(0, -1, game.res.down, (gameStage.getWidth() / 2) + 170, 0 );
+        indiDir(0, -1, game.res.down, 1, gameStage.getHeight() / 4 );
 
-        indiDir(-1, 0, game.res.left, 1, gameStage.getHeight() / 4 );
+        indiDir(-1, 0, game.res.left, (gameStage.getWidth() / 2) + 170, 0 );
         indiDir(1, 0, game.res.right, (gameStage.getWidth() / 2) + 170, gameStage.getHeight() / 4 );
 
     }
