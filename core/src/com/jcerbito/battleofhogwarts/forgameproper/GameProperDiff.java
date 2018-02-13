@@ -10,6 +10,7 @@ import com.jcerbito.battleofhogwarts.forbg.foreffects.LightningBoltFx;
 import com.jcerbito.battleofhogwarts.forgameproper.obj.EnemyDiff;
 import com.jcerbito.battleofhogwarts.forgameproper.obj.Equipment;
 import com.jcerbito.battleofhogwarts.forgameproper.obj.Player;
+import com.jcerbito.battleofhogwarts.forgameproper.obj.PlayerDiff;
 import com.jcerbito.battleofhogwarts.screens.GameOverScreen;
 import com.jcerbito.battleofhogwarts.screens.GameScreenDiff;
 import com.jcerbito.battleofhogwarts.screens.StartScreen;
@@ -40,7 +41,7 @@ public class GameProperDiff implements EnemyDiff.EnemyDiffAttackedListener, Ligh
         void OnGameEnd(boolean playerWins);
     }
 
-    Player player;
+    PlayerDiff player;
     EnemyDiff enemy;
     EffectTool effectTool;
 
@@ -53,7 +54,7 @@ public class GameProperDiff implements EnemyDiff.EnemyDiffAttackedListener, Ligh
 
     public GameProperDiff(BattleOfHogwarts g, GameEventListener listener) {
         game = g;
-        player = new Player(MathUtils.random(MAX_BASEX), MathUtils.random(MAX_BASEY), game.res, GameUpgradeDiff.pLives);
+        player = new PlayerDiff(MathUtils.random(MAX_BASEX), MathUtils.random(MAX_BASEY), game.res, GameUpgradeDiff.pLives);
         enemy = new EnemyDiff(game.res, this, MathUtils.random(Resources.VOLDEMORT)); //ipapasa yung gameproper as attacklistner
         effectTool = new EffectTool();
         equipments = new ArrayList<Equipment>();
@@ -62,7 +63,7 @@ public class GameProperDiff implements EnemyDiff.EnemyDiffAttackedListener, Ligh
         eventListener = listener;
     }
 
-    public Player getPlayer(){
+    public PlayerDiff getPlayer(){
         return player;
     }
 

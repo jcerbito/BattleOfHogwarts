@@ -10,6 +10,7 @@ import com.jcerbito.battleofhogwarts.forbg.foreffects.LightningBoltFx;
 import com.jcerbito.battleofhogwarts.forgameproper.obj.EnemyAverage;
 import com.jcerbito.battleofhogwarts.forgameproper.obj.Equipment;
 import com.jcerbito.battleofhogwarts.forgameproper.obj.Player;
+import com.jcerbito.battleofhogwarts.forgameproper.obj.PlayerAverage;
 import com.jcerbito.battleofhogwarts.screens.GameOverScreen;
 import com.jcerbito.battleofhogwarts.screens.GameScreenAverage;
 import com.jcerbito.battleofhogwarts.screens.StartScreen;
@@ -39,7 +40,7 @@ public class GameProperAverage implements EnemyAverage.EnemyAverageAttackedListe
         void OnGameEnd(boolean playerWins);
     }
 
-    Player player;
+    PlayerAverage player;
     EnemyAverage enemy;
     EffectTool effectTool;
 
@@ -52,7 +53,7 @@ public class GameProperAverage implements EnemyAverage.EnemyAverageAttackedListe
 
     public GameProperAverage(BattleOfHogwarts g, GameEventListener listener) {
         game = g;
-        player = new Player(MathUtils.random(MAX_BASEX), MathUtils.random(MAX_BASEY), game.res, GameUpgradeAverage.pLives);
+        player = new PlayerAverage(MathUtils.random(MAX_BASEX), MathUtils.random(MAX_BASEY), game.res, GameUpgradeAverage.pLives);
         enemy = new EnemyAverage(game.res, this, MathUtils.random(Resources.DE_3)); //ipapasa yung gameproper as attacklistner
         effectTool = new EffectTool();
         equipments = new ArrayList<Equipment>();
@@ -61,7 +62,7 @@ public class GameProperAverage implements EnemyAverage.EnemyAverageAttackedListe
         eventListener = listener;
     }
 
-    public Player getPlayer(){
+    public PlayerAverage getPlayer(){
         return player;
     }
 
@@ -147,8 +148,6 @@ public class GameProperAverage implements EnemyAverage.EnemyAverageAttackedListe
                         }
                     }
 
-                }else if (currEquipment.getEq() == Equipment.WAND2){
-                    player.damage(2);
                 }
 
                 currEquipment.release();

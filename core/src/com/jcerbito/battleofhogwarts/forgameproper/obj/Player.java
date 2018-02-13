@@ -27,11 +27,11 @@ public class Player extends ObjectEffect {
         super(lvs);
         locX = lX;
         locY = lY;
-        if (ChooseCharacter.charLockEasy == 1 || ChooseCharacterAverage.charLockAve == 1 || ChooseCharacterDiff.charLockDiff == 1){
+        if (ChooseCharacterDiff.charLockDiff == 1){
             set(res.hp);
-        }else if(ChooseCharacter.charLockEasy == 2 || ChooseCharacterAverage.charLockAve == 2 || ChooseCharacterDiff.charLockDiff == 2){
+        }else if(ChooseCharacterDiff.charLockDiff == 2){
             set(res.hg);
-        }else if(ChooseCharacterAverage.charLockAve == 3 || ChooseCharacterDiff.charLockDiff == 3){
+        }else if(ChooseCharacterDiff.charLockDiff == 3){
             set(res.hag);
         }else if(ChooseCharacterDiff.charLockDiff == 4){
             set(res.rw);

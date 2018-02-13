@@ -6,6 +6,10 @@ import com.jcerbito.battleofhogwarts.Resources;
 import com.jcerbito.battleofhogwarts.forbg.SizeEval;
 import com.jcerbito.battleofhogwarts.forgameproper.GameUpgrade;
 import com.jcerbito.battleofhogwarts.forgameproper.GameUpgradeAverage;
+import com.jcerbito.battleofhogwarts.forgameproper.GameUpgradeEasy;
+import com.jcerbito.battleofhogwarts.screens.ChooseCharacter;
+import com.jcerbito.battleofhogwarts.screens.ChooseCharacterAverage;
+import com.jcerbito.battleofhogwarts.screens.ChooseCharacterDiff;
 
 /**
  * Created by HP on 10/01/2018.
@@ -24,9 +28,18 @@ public class PlayerAverage extends ObjectEffect {
         super(lvs);
         locX = lX;
         locY = lY;
-        set(res.hp);
-        //lives = lvs;
+
+        if (ChooseCharacterAverage.charLockAve == 1){
+            set(res.hp);
+        }else if (ChooseCharacterAverage.charLockAve == 2){
+            set(res.hg);
+        }else if (ChooseCharacterAverage.charLockAve == 3){
+            set(res.hag);
+        }
+
         maxLives = GameUpgradeAverage.maxPLives;
+
+
     }
 
     public int getLocX(){

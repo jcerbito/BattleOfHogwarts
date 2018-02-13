@@ -6,6 +6,9 @@ import com.jcerbito.battleofhogwarts.Resources;
 import com.jcerbito.battleofhogwarts.forbg.SizeEval;
 import com.jcerbito.battleofhogwarts.forgameproper.GameUpgrade;
 import com.jcerbito.battleofhogwarts.forgameproper.GameUpgradeEasy;
+import com.jcerbito.battleofhogwarts.screens.ChooseCharacter;
+import com.jcerbito.battleofhogwarts.screens.ChooseCharacterAverage;
+import com.jcerbito.battleofhogwarts.screens.ChooseCharacterDiff;
 
 /**
  * Created by HP on 10/01/2018.
@@ -24,9 +27,16 @@ public class PlayerEasy extends ObjectEffect {
         super(lvs);
         locX = lX;
         locY = lY;
-        set(res.hp);
-        //lives = lvs;
+
+        if (ChooseCharacter.charLockEasy == 1){
+            set(res.hp);
+        }else if (ChooseCharacter.charLockEasy == 2){
+            set(res.hg);
+        }
+
         maxLives = GameUpgradeEasy.maxPLives;
+
+
     }
 
     public int getLocX(){

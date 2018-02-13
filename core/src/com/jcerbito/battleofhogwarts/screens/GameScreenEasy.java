@@ -26,6 +26,7 @@ import com.jcerbito.battleofhogwarts.forgameproper.GameProperEasy;
 import com.jcerbito.battleofhogwarts.forgameproper.GameUpgradeEasy;
 import com.jcerbito.battleofhogwarts.forgameproper.obj.Equipment;
 import com.jcerbito.battleofhogwarts.forgameproper.obj.Player;
+import com.jcerbito.battleofhogwarts.forgameproper.obj.PlayerEasy;
 
 /**
  * Created by HP on 09/01/2018.
@@ -47,7 +48,7 @@ public class GameScreenEasy extends DefaultScreen implements GameProperEasy.Game
     private Background bg;
 
     private GameProperEasy gmProper;
-    private Player player;
+    private PlayerEasy player;
 
     public static float timePast = 16.0f;
     public static int cntTime;

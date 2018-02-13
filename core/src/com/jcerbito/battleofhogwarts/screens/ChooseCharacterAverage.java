@@ -74,8 +74,8 @@ public class ChooseCharacterAverage extends DefaultScreen {
         if ((GameUpgradeEasy.ulock + GameUpgradeAverage.ulock) >= 30){
             charButtonTwo.addListener(new ClickListener(){
                 public void touchUp(InputEvent event, float x, float y, int pointer, int button){
-                    dispose();
                     charLockAve = 2;
+                    dispose();
                     game.setScreen(new GameScreenAverage(game));
 
                 }
@@ -90,8 +90,8 @@ public class ChooseCharacterAverage extends DefaultScreen {
         if ((GameUpgradeEasy.ulock + GameUpgradeAverage.ulock)  >= 50 ){
             charButtonThree.addListener(new ClickListener(){
                 public void touchUp(InputEvent event, float x, float y, int pointer, int button){
-                    dispose();
                     charLockAve = 3;
+                    dispose();
                     game.setScreen(new GameScreenAverage(game));
                 }
             });

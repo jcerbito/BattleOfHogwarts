@@ -80,8 +80,8 @@ public class ChooseCharacterDiff extends DefaultScreen {
         if ((GameUpgradeEasy.ulock + GameUpgradeAverage.ulock) >= 30){
             charButtonTwo.addListener(new ClickListener(){
                 public void touchUp(InputEvent event, float x, float y, int pointer, int button){
-                    dispose();
                     charLockDiff = 2;
+                    dispose();
                     game.setScreen(new GameScreenDiff(game));
 
 
@@ -97,8 +97,8 @@ public class ChooseCharacterDiff extends DefaultScreen {
         if ((GameUpgradeEasy.ulock + GameUpgradeAverage.ulock)  >= 50 ){
             charButtonThree.addListener(new ClickListener(){
                 public void touchUp(InputEvent event, float x, float y, int pointer, int button){
-                    dispose();
                     charLockDiff = 3;
+                    dispose();
                     game.setScreen(new GameScreenDiff(game));
                 }
             });
@@ -112,8 +112,8 @@ public class ChooseCharacterDiff extends DefaultScreen {
         if ((GameUpgradeEasy.ulock + GameUpgradeAverage.ulock + GameUpgradeDiff.ulock)  >= 70 ){
             charButtonFour.addListener(new ClickListener(){
                 public void touchUp(InputEvent event, float x, float y, int pointer, int button){
-                    dispose();
                     charLockDiff = 4;
+                    dispose();
                     game.setScreen(new GameScreenDiff(game));
                 }
             });

@@ -53,7 +53,7 @@ public class StartScreen extends DefaultScreen {
     public static boolean musOn;
 
     void startUI(){
-        bgTexture = new Texture(Gdx.files.internal("bckgrnddddf.jpg"));
+        bgTexture = new Texture(Gdx.files.internal("bckgrnddd.jpg"));
         Image bckgrnd = new Image(bgTexture);
 
         potionTexture = new Texture(Gdx.files.internal("heart.png"));

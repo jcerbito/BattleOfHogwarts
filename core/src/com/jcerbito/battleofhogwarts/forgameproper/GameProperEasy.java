@@ -10,6 +10,7 @@ import com.jcerbito.battleofhogwarts.forbg.foreffects.LightningBoltFx;
 import com.jcerbito.battleofhogwarts.forgameproper.obj.EnemyEasy;
 import com.jcerbito.battleofhogwarts.forgameproper.obj.Equipment;
 import com.jcerbito.battleofhogwarts.forgameproper.obj.Player;
+import com.jcerbito.battleofhogwarts.forgameproper.obj.PlayerEasy;
 import com.jcerbito.battleofhogwarts.screens.GameOverScreen;
 import com.jcerbito.battleofhogwarts.screens.GameScreenEasy;
 import com.jcerbito.battleofhogwarts.screens.StartScreen;
@@ -41,7 +42,7 @@ public class GameProperEasy implements EnemyEasy.EnemyEasyAttackedListener, Ligh
         void OnGameEnd(boolean playerWins);
     }
 
-    Player player;
+    PlayerEasy player;
     EnemyEasy enemy;
     EffectTool effectTool;
 
@@ -56,7 +57,7 @@ public class GameProperEasy implements EnemyEasy.EnemyEasyAttackedListener, Ligh
 
     public GameProperEasy(BattleOfHogwarts g, GameEventListener listener) {
         game = g;
-        player = new Player(MathUtils.random(MAX_BASEX), MathUtils.random(MAX_BASEY), game.res, GameUpgradeEasy.pLives);
+        player = new PlayerEasy(MathUtils.random(MAX_BASEX), MathUtils.random(MAX_BASEY), game.res, GameUpgradeEasy.pLives);
         enemy = new EnemyEasy(game.res, this, MathUtils.random(Resources.DE_1, Resources.DE_2)); //ipapasa yung gameproper as attacklistner
         effectTool = new EffectTool();
         equipments = new ArrayList<Equipment>();
@@ -65,7 +66,7 @@ public class GameProperEasy implements EnemyEasy.EnemyEasyAttackedListener, Ligh
         eventListener = listener;
     }
 
-    public Player getPlayer(){
+    public PlayerEasy getPlayer(){
         return player;
     }
 

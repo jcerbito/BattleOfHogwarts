@@ -27,6 +27,7 @@ import com.jcerbito.battleofhogwarts.forgameproper.GameUpgradeAverage;
 import com.jcerbito.battleofhogwarts.forgameproper.GameUpgradeEasy;
 import com.jcerbito.battleofhogwarts.forgameproper.obj.Equipment;
 import com.jcerbito.battleofhogwarts.forgameproper.obj.Player;
+import com.jcerbito.battleofhogwarts.forgameproper.obj.PlayerAverage;
 
 /**
  * Created by HP on 09/01/2018.
@@ -36,8 +37,8 @@ public class GameScreenAverage extends DefaultScreen implements GameProperAverag
 
     SpriteBatch batch;
 
-    public static final int WIDTH = 16 * Resources.TILE_SIZE; //350 14
-    public static final int HEIGHT = 8 * Resources.TILE_SIZE; //250 10
+    public static final int WIDTH = 14 * Resources.TILE_SIZE; //350 14
+    public static final int HEIGHT = 10 * Resources.TILE_SIZE; //250 10
 
     public static final float GAME_END = 0.5f;
     public static final float GAME_START= 0.2f;
@@ -48,7 +49,7 @@ public class GameScreenAverage extends DefaultScreen implements GameProperAverag
     private Background bg;
 
     private GameProperAverage gmProper;
-    private Player player;
+    private PlayerAverage player;
 
     public static float timePast = 21.0f;
     public static int cntTime;
@@ -117,7 +118,7 @@ public class GameScreenAverage extends DefaultScreen implements GameProperAverag
         buttonStyle.font = game.res.gamefont;
 
         final TextButton quitBtn = new TextButton("QUIT GAME", buttonStyle);
-        quitBtn.setPosition((gameStage.getWidth() - quitBtn.getWidth()) / 2, 0);
+        quitBtn.setPosition((gameStage.getWidth() - quitBtn.getWidth()) / 2, 10);
 
         quitBtn.addListener(new ClickListener(){
             public boolean touchDown(InputEvent event, float x, float y, int pointer, int button){

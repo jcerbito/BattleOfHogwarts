@@ -30,6 +30,7 @@ import com.jcerbito.battleofhogwarts.forgameproper.GameUpgradeAverage;
 import com.jcerbito.battleofhogwarts.forgameproper.GameUpgradeDiff;
 import com.jcerbito.battleofhogwarts.forgameproper.obj.Equipment;
 import com.jcerbito.battleofhogwarts.forgameproper.obj.Player;
+import com.jcerbito.battleofhogwarts.forgameproper.obj.PlayerDiff;
 
 /**
  * Created by HP on 09/01/2018.
@@ -51,7 +52,7 @@ public class GameScreenDiff extends DefaultScreen implements GameProperDiff.Game
     private Background bg;
 
     private GameProperDiff gmProper;
-    private Player player;
+    private PlayerDiff player;
 
     public static float timePast = 26.0f;
     public static int cntTime;

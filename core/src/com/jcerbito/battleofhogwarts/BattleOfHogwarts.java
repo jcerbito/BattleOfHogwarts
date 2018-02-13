@@ -9,6 +9,7 @@ import com.jcerbito.battleofhogwarts.forgameproper.GameUpgradeAverage;
 import com.jcerbito.battleofhogwarts.forgameproper.GameUpgradeDiff;
 import com.jcerbito.battleofhogwarts.forgameproper.GameUpgradeEasy;
 import com.jcerbito.battleofhogwarts.screens.GameScreen;
+import com.jcerbito.battleofhogwarts.screens.SplashScreen;
 import com.jcerbito.battleofhogwarts.screens.StartScreen;
 
 public class BattleOfHogwarts extends Game {
@@ -25,7 +26,7 @@ public class BattleOfHogwarts extends Game {
 		GameUpgradeEasy.Load();
 		GameUpgradeAverage.Load();
 		GameUpgradeDiff.Load();
-		setScreen(new StartScreen(this));
+		setScreen(new SplashScreen(this));
 	}
 
 	public static void playMusic(){

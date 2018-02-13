@@ -47,6 +47,7 @@ public class ChooseCharacter extends DefaultScreen {
 
 
 
+
     void startUI(){
         bgTexture = new Texture(Gdx.files.internal("charbg.jpg"));
         Image bckgrnd = new Image(bgTexture);
@@ -58,8 +59,10 @@ public class ChooseCharacter extends DefaultScreen {
 
             charButton.addListener(new ClickListener(){
                 public void touchUp(InputEvent event, float x, float y, int pointer, int button){
-                    dispose();
                     charLockEasy = 1;
+
+                    dispose();
+
 //                  GameUpgradeEasy.chrlckk = 0;
 //                  GameUpgradeEasy.chrlck = 1;
                     game.setScreen(new GameScreenEasy(game));
@@ -77,10 +80,12 @@ public class ChooseCharacter extends DefaultScreen {
         if ((GameUpgradeEasy.ulock + GameUpgradeAverage.ulock) >= 30){
             charButtonTwo.addListener(new ClickListener(){
                 public void touchUp(InputEvent event, float x, float y, int pointer, int button){
-                    dispose();
                     charLockEasy = 2;
-                    GameUpgradeEasy.chrlck = 0;
-                    GameUpgradeEasy.chrlckk = 2;
+
+                    dispose();
+
+//                    GameUpgradeEasy.chrlck = 0;
+//                    GameUpgradeEasy.chrlckk = 2;
                     game.setScreen(new GameScreenEasy(game));
 
 
