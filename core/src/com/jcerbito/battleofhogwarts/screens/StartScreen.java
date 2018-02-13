@@ -53,7 +53,7 @@ public class StartScreen extends DefaultScreen {
     public static boolean musOn;
 
     void startUI(){
-        bgTexture = new Texture(Gdx.files.internal("bckgrnddd.jpg"));
+        bgTexture = new Texture(Gdx.files.internal("bckgrnddddf.jpg"));
         Image bckgrnd = new Image(bgTexture);
 
         potionTexture = new Texture(Gdx.files.internal("heart.png"));
@@ -138,12 +138,24 @@ public class StartScreen extends DefaultScreen {
         final TextButton.TextButtonStyle buttonStyle2 = new TextButton.TextButtonStyle();
         buttonStyle2.font = game.res.gamefont;
 
+        final TextButton.TextButtonStyle buttonStylee = new TextButton.TextButtonStyle();
+        buttonStylee.font = game.res.gamefont;
+
+        TextButton.TextButtonStyle buttonStyleee = new TextButton.TextButtonStyle();
+        buttonStyleee.font = game.res.gamefont;
+
+
 
 
        // buttonStyle.fontColor = Color.WHITE;
 
-        TextButton ulockBtn = new TextButton(" " + (GameUpgradeEasy.ulock + GameUpgradeAverage.ulock + GameUpgradeDiff.ulock), buttonStyle);
+        TextButton ulockBtn = new TextButton(" " + (GameUpgradeEasy.ulock + GameUpgradeAverage.ulock + GameUpgradeDiff.ulock), buttonStyleee);
         ulockBtn.setPosition(23, (uiStage.getHeight() / 2) + 83);
+
+        final TextButton titleBtn = new TextButton("BATTLE OF HOGWARTS", buttonStylee);
+        titleBtn.setPosition((uiStage.getWidth() - titleBtn.getWidth()) / 2, (uiStage.getHeight() / 2));
+
+
 
 
         final TextButton easyBtn = new TextButton("EASY", buttonStyle);
@@ -251,6 +263,7 @@ public class StartScreen extends DefaultScreen {
         uiStage.addActor(diffBtn);
         uiStage.addActor(aveBtn);
         uiStage.addActor(easyBtn);
+//        uiStage.addActor(titleBtn);
         uiStage.addActor(potion);
         uiStage.addActor(helpButton);
         uiStage.addActor(musButton);
